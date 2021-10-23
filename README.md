@@ -5,8 +5,8 @@ Words Against Humanity is a interactive word game, where by players take turns i
 <h3>How to play:</h3>
 <ol>
     <li>Enter a word - no spaces or special characters</li>
-    <li>Try to make the most creative, ridiculous and silly story you can within 10 words</li>
-    <li>You can end the game early if you have made the best story under 10 words</li>
+    <li>Try to make the most creative, ridiculous and silly story you can within 200 words</li>
+    <li>You can end the game early if you have made the best story under 200 words</li>
 </ol> 
 
 <h3>Technologies used:</h3>
@@ -30,5 +30,5 @@ blah...
 <h3>Project Discovery + Planning:</h3>
 <ul>
     <li>Trello PM Board: https://trello.com/b/bCL5eeh9/planning-board</li>
-    <li>Figma Layout: https://www.figma.com/file/twTdxgSvGdGqNxnHYpLH4h/Words-Against-Humanity?node-id=110%3A54</li>
+    <li>Figma Layout: https://www.figma.com/file/twTdxgSvGdGqNxnHYpLH4h/Words-Against-Humanity?node-id=0%3A1</li>
 </ul>
