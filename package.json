@@ -1,0 +1,29 @@
+{
+  "name": "words-against-humanity",
+  "version": "1.0.0",
+  "description": "<h1>Words Against Humanity</h1>",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hstonehouse/words-against-humanity.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hstonehouse/words-against-humanity/issues"
+  },
+  "homepage": "https://github.com/hstonehouse/words-against-humanity#readme",
+  "dependencies": {
+    "axios": "^0.23.0",
+    "connect-pg-simple": "^7.0.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "pg": "^8.7.1"
+  }
+}
