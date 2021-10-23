@@ -26,3 +26,9 @@ This is a Single Page Application (SPA) developed in Node JS, using the followin
 <h3>Understanding the Repo</h3>
 
 blah...
+
+<h3>Project Discovery + Planning:</h3>
+<ul>
+    <li>Trello PM Board: https://trello.com/b/bCL5eeh9/planning-board</li>
+    <li>Figma Layout: https://www.figma.com/file/twTdxgSvGdGqNxnHYpLH4h/Words-Against-Humanity?node-id=110%3A54</li>
+</ul>
