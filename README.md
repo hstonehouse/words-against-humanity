@@ -16,16 +16,20 @@ This is a Single Page Application (SPA) developed in Node JS, using the followin
     <li>Express JS</li>
     <li>Bycrypt</li>
     <li>pgSessions</li>
-    <li>Connect-PG-Simple</li>
+    <li>Connect-PG-Simple</li> 
     <li>Axios</li>
     <li>NLP 'Bad-Words'</li>
     <li>Dotenv</li>
     <li></li>
 </ul>
 
+The website is hosted through Heroku and the code repositry is available on GitHub.
+<a href=""></a>
+
+
 <h3>Understanding the Repo</h3>
 
-blah...
+This Single Page App was developed using a standard Node JS, Models, Views and Controllers (MVC) folder structure. 
 
 <h3>Project Discovery + Planning:</h3>
 <ul>
