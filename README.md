@@ -24,7 +24,7 @@ This is a Single Page Application (SPA) developed in Node JS, using the followin
 </ul>
 
 The website is hosted through Heroku and the code repositry is available on GitHub.
-<a href=""></a>
+<a href="https://words-against-humanity.herokuapp.com/">Words Against Humanity</a>
 
 
 <h3>Understanding the Repo</h3>
