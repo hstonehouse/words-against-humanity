@@ -11,6 +11,7 @@ CREATE TABLE users (
 
 CREATE TABLE rooms (
     room_id SERIAL PRIMARY KEY,
+    user_id INTEGER,
     words TEXT
 );
 
@@ -25,6 +26,9 @@ CREATE TABLE phrases (
 )
 
 INSERT INTO users (username, password) VALUES ('Test', 'test'); -- update password later with bcrypt
-INSERT INTO rooms (words) VALUES ('a potato walked into a bar ');
+INSERT INTO rooms (user_id, words) VALUES (1, 'a potato walked into a bar ');
 INSERT INTO stories (content) VALUES ('blah ');
 INSERT INTO phrases (content) VALUES ('Once upon a time... ');
+
+-- update rooms table to include user_id
+DROP TABLE rooms;
