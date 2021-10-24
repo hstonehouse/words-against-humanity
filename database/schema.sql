@@ -1,4 +1,7 @@
-createdb game
+createdb words-against-humanity
+-- changed DB to the above as that is what I set on heroku. 
+-- If we need to change it back, 
+-- I'll drop the current DB on Heroku and re-add.
 
 CREATE TABLE users (
   user_id SERIAL PRIMARY KEY,
@@ -24,4 +27,4 @@ CREATE TABLE phrases (
 INSERT INTO users (username, password) VALUES ('Test', 'test'); -- update password later with bcrypt
 INSERT INTO rooms (words) VALUES ('a potato walked into a bar ');
 INSERT INTO stories (content) VALUES ('blah ');
-INSERT INTO phrases (content) VALUES ('Once upon a time ');
+INSERT INTO phrases (content) VALUES ('Once upon a time... ');
