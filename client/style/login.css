@@ -1,0 +1,107 @@
+body, .default-text {
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+body {
+    height: 100vh;
+    margin: 0;
+}
+
+main {
+    background-image: url("libraryBg.jpeg");
+    height: 100%;
+}
+
+section {
+    background-color: rgba(255, 249, 249, 0.7);
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    width: 630px;
+    margin-top: 30px;
+}
+
+/* Words Against Humanity Header */
+h1.title {
+    color: #FFFFFF;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.75);
+    font-size: 48px;
+    line-height: 72px;
+    text-align: center;
+    width: 500px;
+}
+
+/* Please Log In */
+h2 {
+    font-size: 36px;
+    line-height: 54px;
+    text-align: center;
+    color: #000000;
+    text-shadow: 1px 4px 4px #FFFFFF;
+}
+
+/* Labels and inputs - using grid layout */
+.label-grid{
+    display: grid;
+    grid-template-areas:
+        "username-label username-input"
+        "password-label password-input";
+    grid-template-columns: 30% 70%;
+}
+
+label[for=username]{
+    grid-area: username-label;
+}
+label[for=password]{
+    grid-area: password-label;
+}
+
+label[for=username], label[for=password]{
+    height: 58px;
+    font-size: 24px;
+    line-height: 36px;
+    text-align: right;
+    margin-right: 20px;
+    margin-top: 32px;
+}
+
+input[type=text]{
+    grid-area: username-input;
+}
+input[type=password]{
+    grid-area: password-input;
+}
+
+input[name=username], input[name=password]{
+    border: none;
+    height: 55px;
+    margin-right: 75px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+/* Log in using flexbox and center align */
+.flex-center{
+    display: flex;
+    justify-content: center;
+}
+
+input[type=submit]{
+    background: none;
+    border: none;
+    font-size: 48px;
+    line-height: 72px;
+    color: #000000;
+    text-shadow: 1px 4px 4px #FFFFFF;
+    margin-bottom: 20px;
+}
+
+#register {
+    color: #FFFFFF;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.75);
+    font-size: 48px;
+    line-height: 72px;
+    text-align: center;
+    background: none;
+    border: none;
+    margin-top: 30px;
+}
