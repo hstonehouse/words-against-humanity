@@ -1,16 +1,16 @@
 <h1>Words Against Humanity</h1>
 
-Words Against Humanity is a interactive word game, where by players take turns in creating a story by inputing single words, one at a time. 
+Words Against Humanity is a interactive word game, whereby players take turns in creating a story by inputting single words, one at a time. 
 
 <h3>How to play:</h3>
 <ol>
-    <li>Enter a word - no spaces or special characters</li>
+    <li>Enter a word - no spaces or special characters (except for punctuation)</li>
     <li>Try to make the most creative, ridiculous and silly story you can within 200 words</li>
-    <li>You can end the game early if you have made the best story under 200 words</li>
+    <li>You can end the game early if you have done that under 200 words</li>
 </ol> 
 
 <h3>Technologies used:</h3>
-This is a Single Page Application (SPA) developed in Node JS, using the following dependancies:
+This is a Single Page Application (SPA) developed in Node JS, using the following dependencies:
 
 <ul>
     <li>Express JS</li>
@@ -20,7 +20,6 @@ This is a Single Page Application (SPA) developed in Node JS, using the followin
     <li>Axios</li>
     <li>NLP 'Bad-Words'</li>
     <li>Dotenv</li>
-    <li></li>
 </ul>
 
 The website is hosted through Heroku and the code repositry is available on GitHub.
