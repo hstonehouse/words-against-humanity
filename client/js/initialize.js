@@ -3,5 +3,13 @@ function renderHeader() {
   header.innerHTML = `
     <h1>Words Against Humanity</h1>
     `;
+  axios.get("/api/sessions/loggedin").then((response) => {
+    if (response.status === 403){
+      renderLogin();
+    } else {
+      renderLandingPage();
+    }
+  });
 }
+
 renderHeader();

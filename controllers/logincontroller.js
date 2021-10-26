@@ -23,7 +23,7 @@ login.get("/loggedin", (req, res) => {
   if (!req.session.user) {
     res.status(403).json({ message: "Not logged in" });
   } else {
-    res.json({ username: req.session.user });
+    res.json({ username: `${req.session.user}` });
   }
 });
 
