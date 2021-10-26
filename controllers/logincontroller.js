@@ -7,9 +7,10 @@ const login = express.Router();
 
 login.post("/login", (req, res) => {
   const { username, password } = req.body;
-  usersModel.getAllStories(username).then((userObj) => {
+  usersModel.getUser(username).then((userObj) => {
+    console.log(userObj);
     if (userObj[0].password === password) {
-      req.session.user = userObj[0].id;
+      req.session.user = userObj[0].user_id;
       res.json({ message: `Successfully logged in as ${username}` });
     } else {
       res
@@ -21,7 +22,7 @@ login.post("/login", (req, res) => {
 
 login.get("/loggedin", (req, res) => {
   if (!req.session.user) {
-    res.status(403).json({ message: "Not logged in" });
+    res.status(401).json({ message: "false" });
   } else {
     res.json({ username: `${req.session.user}` });
   }
