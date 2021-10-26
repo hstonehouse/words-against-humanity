@@ -18,3 +18,10 @@ form.addEventListener("submit", event => {
             errorMessage.append(errorMessageDiv);
         });
 });
+
+// Register button
+const register = document.getElementById('register');
+
+register.addEventListener("click", event => {
+    window.location.href = '/api/sessions/register';
+})
