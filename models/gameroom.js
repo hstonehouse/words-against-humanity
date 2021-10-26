@@ -10,10 +10,9 @@ const Gameroom = {
     return db.query(sql);
   },
   // Grab room id using the user_id who started the game
-  retrieveUserGame(user_id) {
+  retrieveGame() {
     const sql = {
-      text: `SELECT * FROM rooms WHERE user_id = $1`,
-      values: [user_id],
+      text: `SELECT * FROM rooms`
     };
     return db.query(sql).then((dbResult) => dbResult.rows);
   },
