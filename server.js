@@ -6,7 +6,7 @@ const express = require("express");
 const storiesController = require("./controllers/storycontroller");
 const loginController = require("./controllers/logincontroller");
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 app.use(
   expressSession({
     store: new pgSession({
