@@ -5,7 +5,7 @@ const usersModel = require("../models/users");
 
 const login = express.Router();
 
-login.post("/", (req, res) => {
+login.post("/login", (req, res) => {
   const { username, password } = req.body;
   usersModel.getAllStories(username).then((userObj) => {
     if (userObj[0].password === password) {
@@ -19,7 +19,7 @@ login.post("/", (req, res) => {
   });
 });
 
-login.get("/", (req, res) => {
+login.get("/loggedin", (req, res) => {
   if (!req.session.user) {
     res.status(403).json({ message: "Not logged in" });
   } else {
@@ -27,7 +27,7 @@ login.get("/", (req, res) => {
   }
 });
 
-login.delete("/", (req, res) => {
+login.delete("/logout", (req, res) => {
   req.session.destroy();
   res.json({ message: "You have logged out successfully" });
 });

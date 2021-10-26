@@ -4,6 +4,7 @@ const expressSession = require("express-session");
 const pgSession = require("connect-pg-simple")(expressSession);
 const express = require("express");
 const storiesController = require("./controllers/storycontroller");
+const loginController = require("./controllers/logincontroller");
 const app = express();
 const port = 3000;
 app.use(
@@ -17,6 +18,7 @@ app.use(
 );
 app.use(express.static("client"));
 app.use(express.json());
+app.use("/api/sessions", loginController);
 app.use("/api/stories", storiesController);
 // start the web server
 app.listen(port, () => {
