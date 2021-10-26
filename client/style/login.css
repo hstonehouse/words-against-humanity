@@ -7,14 +7,15 @@ body, .default-text {
 body {
     height: 100vh;
     margin: 0;
-}
-
-main {
     background-image: url("libraryBg.jpeg");
-    height: 100%;
 }
 
-section {
+#page {
+    display: grid;
+    justify-content: center;
+}
+
+.login {
     background-color: rgba(255, 249, 249, 0.7);
     border: 1px solid #000000;
     box-sizing: border-box;
@@ -30,6 +31,10 @@ h1.title {
     line-height: 72px;
     text-align: center;
     width: 500px;
+}
+#header-nav {
+    display: flex;
+    justify-content: center;
 }
 
 /* Please Log In */

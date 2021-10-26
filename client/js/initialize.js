@@ -1,15 +1,16 @@
 function renderHeader() {
   const header = document.getElementById("header-nav");
   header.innerHTML = `
-    <h1>Words Against Humanity</h1>
+    <h1 class="title">Words Against Humanity</h1>
     `;
-  axios.get("/api/sessions/loggedin").then((response) => {
-    if (response.status === 403){
-      renderLogin();
-    } else {
-      renderLandingPage();
-    }
-  });
 }
-
+let userLogin = false;
+axios
+  .get("/api/sessions/loggedin")
+  .then((response) => {
+    renderLandingPage();
+  })
+  .catch((err) => {
+    renderLogin();
+  });
 renderHeader();

@@ -20,11 +20,11 @@ function renderLandingPage() {
     renderNewGame();
   });
 }
-  axios.get("/api/rooms").then((response)=>{
-    if (!response.body){
-      // start a new game
-    } else {
-      // join the existing game
-      // renderGame()
-  }
-})
+//   axios.get("/api/rooms").then((response)=>{
+//     if (!response.body){
+//       // start a new game
+//     } else {
+//       // join the existing game
+//       // renderGame()
+//   }
+// })
