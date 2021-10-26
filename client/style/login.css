@@ -44,7 +44,8 @@ h2 {
     display: grid;
     grid-template-areas:
         "username-label username-input"
-        "password-label password-input";
+        "password-label password-input"
+        "confirm-password-label confirm-password-input";
     grid-template-columns: 30% 70%;
 }
 
