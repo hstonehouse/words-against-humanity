@@ -4,18 +4,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Please login</title>
-    <script defer src="/js/components/login.js"></script>
+    <title>Log In</title>
+    <script defer src="./js/components/login.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="./style/login.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+        </style>
 </head>
 <body>
-    <div id="error-message"></div>
-    <form>
-        <label for="username">Username</label>
-        <input type="text" name="username" required>
-        <label for="password">Password</label>
-        <input type="password" name="password" required>
-        <input type="submit">
-    </form>
+    <!-- 'main' tag is for the background image -->
+    <main> 
+        <div class="flex-center">
+            <h1 class="title">WORDS AGAINST HUMANITY</h1>
+        </div>
+        <!-- 'section' tag is for the translucent white box -->
+        <div class="flex-center">
+            <section>
+                <h2>Please Log In</h2>
+                <div id="error-message"></div>
+                <form id="login-form"> 
+                    <div class="label-grid">
+                        <label for="username">Username: </label>
+                        <input type="text" name="username" required>
+                        <label for="password">Password: </label>
+                        <input type="password" name="password" required>
+                    </div>
+                    <div class="flex-center">
+                        <input type="submit" class="default-text" value="Log In">
+                    </div>
+                </form>
+            </section>
+        </div>
+
+        <div class="flex-center">
+            <button class="default-text" id="register">Register</button>
+        </div>
+
+    </main>
 </body>
 </html>
