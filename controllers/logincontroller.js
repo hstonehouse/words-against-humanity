@@ -8,8 +8,11 @@ const login = express.Router();
 login.post("/login", (req, res) => {
   const { username, password } = req.body;
   usersModel.getUser(username).then((userObj) => {
-    console.log(userObj);
-    if (userObj[0].password === password) {
+    if (!userObj[0]) {
+      res
+        .status(400)
+        .json({ message: `User does not exist` });
+    } else if (userObj[0].password === password) {
       req.session.user = userObj[0].user_id;
       res.json({ message: `Successfully logged in as ${username}` });
     } else {
