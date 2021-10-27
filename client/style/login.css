@@ -23,6 +23,10 @@ body {
     margin-top: 30px;
 }
 
+/*  */
+/* Register box styling needs help also confirm password width */
+/*  */
+
 /* Words Against Humanity Header */
 h1.title {
     color: #FFFFFF;
@@ -45,6 +49,11 @@ h2 {
     color: #000000;
     text-shadow: 1px 4px 4px #FFFFFF;
 }
+/* Error message styling */
+#error-message {
+    text-align: center;
+    color: rgb(250, 4, 4)
+}
 
 /* Labels and inputs - using grid layout */
 .label-grid{
@@ -62,8 +71,11 @@ label[for=username]{
 label[for=password]{
     grid-area: password-label;
 }
+label[for=confirmpassword]{
+    grid-area: confirm-password-label;
+}
 
-label[for=username], label[for=password]{
+label[for=username], label[for=password], label[for=confirmpassword]{
     height: 58px;
     font-size: 24px;
     line-height: 36px;
@@ -78,8 +90,10 @@ input[type=text]{
 input[type=password]{
     grid-area: password-input;
 }
-
-input[name=username], input[name=password]{
+input[name=confirmpassword]{
+    grid-area: confirm-password-input;
+}
+input[name=username], input[name=password], input[name=confirmpassword]{
     border: none;
     height: 55px;
     margin-right: 75px;
@@ -101,6 +115,10 @@ input[type=submit]{
     color: #000000;
     text-shadow: 1px 4px 4px #FFFFFF;
     margin-bottom: 20px;
+}
+
+.buttons:hover {
+    cursor: pointer;
 }
 
 #register {
