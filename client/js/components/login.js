@@ -31,18 +31,17 @@ function renderLogin() {
     const formData = new FormData(form); // grabs all the data from the form
     const data = Object.fromEntries(formData.entries()); // grab all the entries in the form and turns it into an object
 
-    // const errorMessageDiv = document.getElementById("error-message");
-    // errorMessageDiv.innerHTML = "";
+    const errorMessageDiv = document.getElementById("error-message");
 
     axios
       .post("/api/sessions/login", data) // this will go to router.post("/login") in your sessions.js
       .then(() => {
-        window.location.href = "/"; // if log in successful, redirect to homepage
+        renderLandingPage() // if log in successful, render landing page
       })
       .catch((err) => {
         const errorMessage = document.createElement("p");
         errorMessage.innerText = "Log in failed. Please try again.";
-        errorMessage.append(errorMessageDiv);
+        errorMessageDiv.append(errorMessage);
       });
   });
 

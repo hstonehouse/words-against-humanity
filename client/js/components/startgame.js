@@ -1,5 +1,7 @@
 function renderLandingPage() {
   const page = document.getElementById("page");
+  page.innerHTML = '';
+  
   // axios request the story on page render to create elements to render landing page before starting game
   axios.get("/api/stories/randomstory").then((randomStoryText) => {
     const randomStoryDiv = document.createElement("div");
@@ -13,12 +15,13 @@ function renderLandingPage() {
     page.append(randomStoryDiv);
     randomStoryDiv.append(storyParagraph);
     page.append(startButton);
+
+    // On click on the start game to render the new game page
+    startButton.addEventListener("click", (event) => {
+      renderNewGame();
+    });
   });
-  // On click on the start game to render the new game page
-  const startButton = document.getElementById("startgame");
-  startButton.addEventListener("click", (event) => {
-    renderNewGame();
-  });
+  
 }
 //   axios.get("/api/rooms").then((response)=>{
 //     if (!response.body){
