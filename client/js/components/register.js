@@ -1,4 +1,4 @@
-function renderLogin() {
+function renderRegister() {
   const page = document.getElementById("page");
   page.innerHTML = `
         <div class="flex-center">
@@ -11,17 +11,15 @@ function renderLogin() {
                         <input type="text" name="username" required>
                         <label for="password">Password: </label>
                         <input type="password" name="password" required>
+                        <label for="confirmpassword">Confirm Password: </label>
+                        <input type="password" name="confirmpassword" required>
                     </div>
                     <div class="flex-center">
-                        <input type="submit" class="default-text buttons" value="Log In">
+                        <input type="submit" class="default-text buttons" value="Register">
                     </div>
                 </form>
             </section>
-        </div>
-  
-        <div class="flex-center">
-            <button class="default-text buttons" id="register">Register</button>
-        </div>
+        </div
 
     `;
   const form = document.querySelector("form");
@@ -34,23 +32,15 @@ function renderLogin() {
     const errorMessageDiv = document.getElementById("error-message");
 
     axios
-      .post("/api/sessions/login", data) // this will go to router.post("/login") in your sessions.js
+      .post("/api/sessions/register", data) // this will go to router.post("/login") in your sessions.js
+
       .then(() => {
-        renderLandingPage(); // if log in successful, render landing page
+        renderLogin(); // if log in successful, render landing page
       })
       .catch((err) => {
         const errorMessage = document.createElement("p");
-        errorMessage.innerText = "Log in failed. Please try again.";
+        errorMessage.innerText = "Passwords do not match";
         errorMessageDiv.append(errorMessage);
       });
-  });
-
-  // Register button
-  const register = document.getElementById("register");
-
-  register.addEventListener("click", (event) => {
-    const page = document.getElementById("page");
-    page.innerHTML = "";
-    renderRegister();
   });
 }

@@ -9,9 +9,7 @@ login.post("/login", (req, res) => {
   const { username, password } = req.body;
   usersModel.getUser(username).then((userObj) => {
     if (!userObj[0]) {
-      res
-        .status(400)
-        .json({ message: `User does not exist` });
+      res.status(400).json({ message: `User does not exist` });
     } else if (userObj[0].password === password) {
       req.session.user = userObj[0].user_id;
       res.json({ message: `Successfully logged in as ${username}` });
@@ -34,6 +32,19 @@ login.get("/loggedin", (req, res) => {
 login.delete("/logout", (req, res) => {
   req.session.destroy();
   res.json({ message: "You have logged out successfully" });
+});
+
+login.post("/register", (req, res) => {
+  const { username, password, confirmpassword } = req.body;
+  console.log(
+    `Username: ${username}, Password: ${password}, Confirm Password: ${confirmpassword}`
+  );
+  if (password === confirmpassword) {
+    usersModel.addUser(username, password);
+    res.status(200).json({ message: "user created" });
+  } else {
+    res.status(400).json({ message: `Passwords don't match` });
+  }
 });
 
 module.exports = login;
