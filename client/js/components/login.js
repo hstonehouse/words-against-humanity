@@ -40,6 +40,7 @@ function renderLogin() {
       })
       .catch((err) => {
         const errorMessage = document.createElement("p");
+        errorMessageDiv.innerHTML = "";
         errorMessage.innerText = "Log in failed. Please try again.";
         errorMessageDiv.append(errorMessage);
       });

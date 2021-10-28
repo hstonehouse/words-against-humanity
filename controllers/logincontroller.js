@@ -31,7 +31,8 @@ login.get("/loggedin", (req, res) => {
 
 login.delete("/logout", (req, res) => {
   req.session.destroy();
-  res.json({ message: "You have logged out successfully" });
+  res.clearCookie("connect.sid");
+  res.status(200).json({ message: "You have logged out successfully" });
 });
 
 login.post("/register", (req, res) => {
