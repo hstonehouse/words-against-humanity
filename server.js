@@ -4,20 +4,15 @@ const expressSession = require("express-session");
 const pgSession = require("connect-pg-simple")(expressSession);
 const express = require("express");
 const socketIO = require('socket.io')
-// (3000,{
-// 	cors: {
-// 		origin: ['http://localhost:8080'], // this is the client-side URL
-// 	},
-// })
+
 const storiesController = require("./controllers/storycontroller");
 const loginController = require("./controllers/logincontroller");
 const roomController = require("./controllers/roomcontroller");
 const port = process.env.PORT || 3000;
-// const INDEX = './client/index.html';
-// const app = express()
+
 const app = express()
-  // .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
-const server = app.listen(port, () => console.log(`Listening on ${port}`));
+  
+const server = app.listen(port, () => console.log(`listening on port http://localhost:${port}`));
 
 const io = socketIO(server);
 
@@ -43,7 +38,5 @@ app.use(express.json());
 app.use("/api/sessions", loginController);
 app.use("/api/stories", storiesController);
 app.use("/api/rooms", roomController)
-// start the web server
-// app.listen(port, () => {
-//   console.log(`listening on port http://localhost:${port}`);
-// });
+
+
