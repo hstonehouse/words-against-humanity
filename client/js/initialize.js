@@ -1,10 +1,19 @@
+import { io } from 'socket.io-client'
+
+const socket = io('http://localhost:3000');
+
+// What should happen when someone connects
+socket.on('connect', () => {
+ console.log(`You connected with id: ${socket.id}`);
+});
+
 function renderHeader() {
   const header = document.getElementById("header-nav");
   header.innerHTML = `
     <h1 class="title">Words Against Humanity</h1>
     `;
-}
-let userLogin = false;
+};
+
 axios
   .get("/api/sessions/loggedin")
   .then((response) => {
