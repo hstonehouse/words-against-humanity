@@ -5,13 +5,18 @@ function renderLandingPage() {
 
   // axios request the story on page render to create elements to render landing page before starting game
   axios.get("/api/stories/randomstory").then((randomStoryText) => {
-  
     const randomStoryDiv = document.createElement("div");
     const storyParagraph = document.createElement("p");
     const startButton = document.createElement("button");
     const logOutButton = document.createElement("button");
+    axios.get("/api/sessions/loggedin").then((response) => {
+      const header = document.getElementById("header-nav");
+      const userEl = document.createElement("p");
+      userEl.class = "user-welcome";
+      userEl.innerText = `Welcome, ${response.data.username}!`;
+      header.prepend(userEl);
+    });
 
-    // Check the return from api format is (JSON but how?)
     storyParagraph.innerText = randomStoryText.data.content;
     startButton.type = "submit";
     startButton.id = "startgame";
@@ -25,14 +30,14 @@ function renderLandingPage() {
     header.append(logOutButton);
 
     // On click on log out button to log out
-    logOutButton.addEventListener("click", event => {
-      axios.delete('api/sessions/logout').then(()=>{
+    logOutButton.addEventListener("click", (event) => {
+      axios.delete("api/sessions/logout").then(() => {
         page.innerHTML = "";
         header.innerHTML = "";
         renderHeader();
         renderLogin();
       });
-    })
+    });
 
     // On click on the start game to render the new game page
     startButton.addEventListener("click", (event) => {

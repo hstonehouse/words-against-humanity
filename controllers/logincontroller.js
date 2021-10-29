@@ -11,7 +11,7 @@ login.post("/login", (req, res) => {
     if (!userObj[0]) {
       res.status(400).json({ message: `User does not exist` });
     } else if (userObj[0].password === password) {
-      req.session.user = userObj[0].user_id;
+      req.session.user = userObj[0].username;
       res.json({ message: `Successfully logged in as ${username}` });
     } else {
       res

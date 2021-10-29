@@ -1,9 +1,8 @@
-
 const socket = io();
 
 // What should happen when someone connects
-socket.on('connect', () => {
- console.log(`You connected with id: ${socket.id}`);
+socket.on("connect", () => {
+  console.log(`You connected with id: ${socket.id}`);
 });
 
 function renderHeader() {
@@ -11,7 +10,7 @@ function renderHeader() {
   header.innerHTML = `
     <h1 class="title">Words Against Humanity</h1>
     `;
-};
+}
 
 axios
   .get("/api/sessions/loggedin")
