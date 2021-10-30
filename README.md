@@ -20,6 +20,7 @@ This is a Single Page Application (SPA) developed in Node JS, using the followin
     <li>Axios</li>
     <li>NLP 'Bad-Words'</li>
     <li>Dotenv</li>
+    <li>Socket.IO</li>
 </ul>
 
 The website is hosted through Heroku and the code repositry is available on GitHub.

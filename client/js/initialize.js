@@ -1,9 +1,3 @@
-const socket = io();
-
-// What should happen when someone connects
-socket.on("connect", () => {
-  console.log(`You connected with id: ${socket.id}`);
-});
 
 function renderHeader() {
   const header = document.getElementById("header-nav");

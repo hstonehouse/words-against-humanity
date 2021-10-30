@@ -1,3 +1,4 @@
+const socket = io();
 
 function renderNewGame(){
     const page = document.getElementById("page");
@@ -38,6 +39,8 @@ function renderNewGame(){
     })
 }
 
-socket.on('broadcast',function(data){
+socket.on('wordInput', function(data){
     console.log(data)
+    const story = document.getElementById("story");
+    story.append(` ${data} `);
 });
