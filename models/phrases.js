@@ -1,10 +1,9 @@
 const db = require("../database/db");
 
 const Phrases = {
-  getPhrase(id) {
+  getPhrase() {
     const sql = {
-      text: `SELECT * FROM phrases WHERE phrase_id = $1`,
-      values: [id],
+      text: `SELECT * FROM phrases`,
     };
     return db.query(sql).then((dbResult) => dbResult.rows);
   },
