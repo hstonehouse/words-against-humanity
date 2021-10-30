@@ -2,17 +2,17 @@ const db = require("../database/db");
 
 const Gameroom = {
   // When game starts - intial phrase is pushed into database with user_id who started game
-  initialGame(user_id, content) {
+  initialGame(content) {
     const sql = {
-      text: `INSERT INTO rooms (user_id, words) VALUES ($1, $2)`,
-      values: [user_id, content],
+      text: `INSERT INTO rooms (words) VALUES ($1)`,
+      values: [content],
     };
     return db.query(sql);
   },
   // Grab room id using the user_id who started the game
   retrieveGame() {
     const sql = {
-      text: `SELECT * FROM rooms`
+      text: `SELECT * FROM rooms`,
     };
     return db.query(sql).then((dbResult) => dbResult.rows);
   },
