@@ -11,11 +11,11 @@ function renderRegister() {
                         <input type="text" name="username" required>
                         <label for="password">Password: </label>
                         <input type="password" name="password" required>
-                        <label for="confirmpassword">Confirm Password: </label>
+                        <label id="confirmpassword" for="confirmpassword">Confirm Password: </label>
                         <input type="password" name="confirmpassword" required>
                     </div>
                     <div class="flex-center">
-                        <input type="submit" class="default-text buttons" value="Register">
+                        <input type="submit" class="default-text buttons submit-button" value="Register">
                     </div>
                 </form>
             </section>

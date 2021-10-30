@@ -13,14 +13,14 @@ function renderLogin() {
                         <input type="password" name="password" required>
                     </div>
                     <div class="flex-center">
-                        <input type="submit" class="default-text buttons" value="Log In">
+                        <input type="submit" class="default-text buttons submit-button" value="Log In">
                     </div>
                 </form>
             </section>
         </div>
   
         <div class="flex-center">
-            <button class="default-text buttons" id="register">Register</button>
+            <button class="default-text buttons register" id="register">Register</button>
         </div>
 
     `;

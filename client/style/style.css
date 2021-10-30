@@ -12,6 +12,9 @@ body {
 
 #page {
     display: grid;
+    grid-template-areas: 
+    "div"
+    "button";
     justify-content: center;
 }
 
@@ -28,6 +31,10 @@ body {
 /*  */
 
 /* Words Against Humanity Header */
+#header-nav {
+    display: flex;
+    justify-content: center;
+}
 h1.title {
     color: #FFFFFF;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.75);
@@ -36,9 +43,9 @@ h1.title {
     text-align: center;
     width: 500px;
 }
-#header-nav {
-    display: flex;
-    justify-content: center;
+
+#user-welcome {
+    color: white;
 }
 
 /* Please Log In */
@@ -107,7 +114,7 @@ input[name=username], input[name=password], input[name=confirmpassword]{
     justify-content: center;
 }
 
-input[type=submit]{
+.submit-button{
     background: none;
     border: none;
     font-size: 48px;
@@ -121,7 +128,7 @@ input[type=submit]{
     cursor: pointer;
 }
 
-#register {
+.register {
     color: #FFFFFF;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.75);
     font-size: 48px;
@@ -130,4 +137,57 @@ input[type=submit]{
     background: none;
     border: none;
     margin-top: 30px;
+}
+#logout{
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 54px;
+    text-align: center;
+    color: #FFFFFF;
+    text-shadow: 1px 4px 4px #000000;
+}
+
+
+/* Landing page styling */
+
+#story-div {
+    width: 500px;
+    height: 484px;
+    left: 252px;
+    top: 208px;
+    padding: 0;
+    background: rgba(196, 196, 196, 0.8);
+    border: 1px solid #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+#story-paragraph {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 35px;
+    margin: 5px;
+    color: #FFFFFF;
+    text-shadow: 1px 3px 3px #000000;  
+}
+#start-button-div {
+    grid-area: "div";
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.gamebuttons {
+    grid-area: "button";
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 54px;
+    text-align: center;
+    color: #FFFFFF;
+    text-shadow: 1px 4px 4px #000000;
+    width: 250px;
+    height: 72px;
+    background: #FB7171;
+}
+#user-welcome {
+    border: red;
 }
