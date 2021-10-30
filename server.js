@@ -7,6 +7,7 @@ const socketIO = require("socket.io");
 const storiesController = require("./controllers/storycontroller");
 const loginController = require("./controllers/logincontroller");
 const roomController = require("./controllers/roomcontroller");
+const phraseController = require("./controllers/phrasescontroller")
 const port = process.env.PORT || 3000;
 const app = express();
 const server = app.listen(port, () =>
@@ -18,7 +19,6 @@ const io = socketIO(server);
 // What happens when someone connects and disconnects to your app (via socket)
 io.on("connection", (socket) => {
   console.log("Client connected");
-  io.sockets.emit('broadcast', {test: "test"});
   socket.on('broadcast', (test) => {socket.broadcast.emit('wordInput', test)});
   socket.on("disconnect", () => console.log("Client disconnected"));
 });
@@ -38,3 +38,4 @@ app.use(express.json());
 app.use("/api/sessions", loginController);
 app.use("/api/stories", storiesController);
 app.use("/api/rooms", roomController);
+app.use("/api/phrase", phraseController);

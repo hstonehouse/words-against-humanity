@@ -25,12 +25,15 @@ function renderNewGame(){
             <input type="submit" value="Press ENTER to Submit">
         </form>
     `
+    axios.get("/api/phrase/randomphrase").then((response) => {
+        const story = document.getElementById("story");
+        story.append(response.data.content);
+    })
+    
+    
     const form = document.querySelector("form");
     form.addEventListener("submit", (event) => {
         event.preventDefault(); // intercepting the submission of form and instead, doing the below JavaScript
-        // const formData = new FormData(form); // grabs all the data from the form
-        // const data = Object.fromEntries(formData.entries()); // grab all the entries in the form and turns it into an object
-
         let userInput = document.getElementById("next-word");
         const story = document.getElementById("story");
         story.append(`${userInput.value} `);
