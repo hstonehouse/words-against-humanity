@@ -28,17 +28,15 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => console.log("Client disconnected"));
   socket.on("newGameConnect", (test) => {
     rooms.retrieveGame().then((response) => {
-      socket.emit("testresponse", response);
-      if (response === null) {
+      if (response[0] == undefined) {
         phrases.getPhrase().then((phraseObj) => {
           const randPhraseIndex = Math.floor(Math.random() * phraseObj.length);
           const randPhrase = phraseObj[randPhraseIndex];
-          rooms.initialGame(randPhrase);
-          console.log("Random phrase:" + randPhrase);
-          socket.emit("newGameConnect", randPhrase);
+          rooms.initialGame(randPhrase.content);
+          console.log("Random phrase:" + randPhrase.content);
+          socket.emit("newGameConnect", randPhrase.content);
         });
       } else {
-        console.log("retrieve game" + response[0].words);
         socket.emit("newGameConnect", response[0].words);
       }
     });
