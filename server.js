@@ -28,6 +28,7 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => console.log("Client disconnected"));
   socket.on("newGameConnect", (test) => {
     rooms.retrieveGame().then((response) => {
+      socket.emit("testresponse", response);
       if (response === null) {
         phrases.getPhrase().then((phraseObj) => {
           const randPhraseIndex = Math.floor(Math.random() * phraseObj.length);

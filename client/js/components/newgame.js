@@ -27,6 +27,9 @@ function renderNewGame() {
         </div>
     `;
   socket.emit("newGameConnect", "startgame");
+  socket.on("testresponse", function (data) {
+    console.log(data);
+  });
   socket.on("newGameConnect", function (data) {
     console.log(data);
     const story = document.getElementById("story");
