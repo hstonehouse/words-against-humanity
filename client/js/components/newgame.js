@@ -25,11 +25,12 @@ function renderNewGame(){
             <input type="submit" value="Press ENTER to Submit">
         </form>
     `
-    axios.get("/api/phrase/randomphrase").then((response) => {
+    socket.emit('newGameConnect')
+    socket.on('newGameConnect', function(data){
+        console.log(data)
         const story = document.getElementById("story");
-        story.append(response.data.content);
-    })
-    
+        story.append(` ${data} `);
+    });
     
     const form = document.querySelector("form");
     form.addEventListener("submit", (event) => {
@@ -40,10 +41,9 @@ function renderNewGame(){
         socket.emit('broadcast', userInput.value)
         userInput.value = "";
     })
+    socket.on('wordInput', function(data){
+        console.log(data)
+        const story = document.getElementById("story");
+        story.append(` ${data} `);
+    });
 }
-
-socket.on('wordInput', function(data){
-    console.log(data)
-    const story = document.getElementById("story");
-    story.append(` ${data} `);
-});
