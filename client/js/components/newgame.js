@@ -1,3 +1,4 @@
+
 function renderNewGame(){
     const page = document.getElementById("page");
     page.innerHTML = `
@@ -28,10 +29,15 @@ function renderNewGame(){
         event.preventDefault(); // intercepting the submission of form and instead, doing the below JavaScript
         // const formData = new FormData(form); // grabs all the data from the form
         // const data = Object.fromEntries(formData.entries()); // grab all the entries in the form and turns it into an object
+
         let userInput = document.getElementById("next-word");
         const story = document.getElementById("story");
         story.append(`${userInput.value} `);
+        socket.emit('broadcast', userInput.value)
         userInput.value = "";
     })
 }
 
+socket.on('broadcast',function(data){
+    console.log(data)
+});

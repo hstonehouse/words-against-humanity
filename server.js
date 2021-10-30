@@ -18,6 +18,8 @@ const io = socketIO(server);
 // What happens when someone connects and disconnects to your app (via socket)
 io.on("connection", (socket) => {
   console.log("Client connected");
+  io.sockets.emit('broadcast', {test: "test"});
+  socket.on('broadcast', (test) => console.log(test));
   socket.on("disconnect", () => console.log("Client disconnected"));
 });
 
