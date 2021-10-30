@@ -26,7 +26,7 @@ function renderNewGame() {
         </form>
         </div>
     `;
-  socket.emit("newGameConnect");
+  socket.emit("newGameConnect", "startgame");
   socket.on("newGameConnect", function (data) {
     console.log(data);
     const story = document.getElementById("story");
