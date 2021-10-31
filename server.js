@@ -18,15 +18,25 @@ const server = app.listen(port, () =>
 
 const io = socketIO(server);
 
+// Temporarily storing the contents of the story in this variable
+// before we make a database call
+let storyCache = '';
+
 // What happens when someone connects and disconnects to your app (via socket)
 io.on("connection", (socket) => {
   console.log("Client connected");
-  socket.on("broadcast", (test) => {
-    // contact room db and update current story
-    socket.broadcast.emit("wordInput", test);
+
+  // Server listens to event from client called "addWord"
+  socket.on("addWord", (newWord) => {
+    // we need to retrieve the game from db and then update it
+    // TODO
+    storyCache += `${newWord} `;
+    socket.broadcast.emit("gameContent", storyCache);
   });
   socket.on("disconnect", () => console.log("Client disconnected"));
-  socket.on("newGameConnect", (test) => {
+
+  // Server listens to event from client called "newGame"
+  socket.on("newGame", (test) => {
     rooms.retrieveGame().then((response) => {
       if (response[0] == undefined) {
         phrases.getPhrase().then((phraseObj) => {
@@ -34,10 +44,13 @@ io.on("connection", (socket) => {
           const randPhrase = phraseObj[randPhraseIndex];
           rooms.initialGame(randPhrase.content);
           console.log("Random phrase:" + randPhrase.content);
-          socket.emit("newGameConnect", randPhrase.content);
+          // Server sends event called "gameContent" back to client
+          storyCache = randPhrase.content
+          socket.emit("gameContent", randPhrase.content);
         });
       } else {
-        socket.emit("newGameConnect", response[0].words);
+        // Server sends event called "gameContent" back to client
+        socket.emit("gameContent", response[0].words);
       }
     });
   });
