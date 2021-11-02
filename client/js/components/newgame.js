@@ -7,6 +7,24 @@ socket.on("gameContent", function (data) {
   story.innerText = data;
 });
 
+// Client listens to event from server called "itsYourTurn"
+socket.on("itsYourTurn", function (data) {
+  const inputField = document.getElementById("next-word");
+  inputField.removeAttribute("disabled");
+  const whoseTurn = document.getElementById("whoseturn");
+  whoseTurn.innerText = " ";
+  whoseTurn.innerText = "It's your turn!"
+});
+
+// Client listens to event from server called "notYourTurn"
+socket.on("notYourTurn", function (data) {
+  const inputField = document.getElementById("next-word");
+  inputField.setAttribute("disabled", true);
+  const whoseTurn = document.getElementById("whoseturn");
+  whoseTurn.innerText = " ";
+  whoseTurn.innerText = "Not your turn."
+})
+
 // Client listens to event from server called "gameHasEnded"
 socket.on("gameHasEnded", function (data) {
   const page = document.getElementById("page");
@@ -52,6 +70,8 @@ function renderNewGame() {
             <input type="submit" value="Press ENTER to Submit">
         </form>
         </div>
+
+        <h3 id="whoseturn"></h3>
     `;
 
   const form = document.querySelector("form");
@@ -62,6 +82,13 @@ function renderNewGame() {
     story.append(`${userInput.value} `);
     socket.emit("addWord", userInput.value);
     userInput.value = "";
+    // Disable input field when user has submitted word
+    const inputField = document.getElementById("next-word");
+    inputField.setAttribute("disabled", true);
+
+    const whoseTurn = document.getElementById("whoseturn");
+    whoseTurn.innerText = " ";
+    whoseTurn.innerText = "Not your turn."
   });
 
   // End game functionality
@@ -71,6 +98,6 @@ function renderNewGame() {
   })
   
   // This sends an event to the server to start the game
-  socket.emit("newGame", "startgame");
+  socket.emit("newGame");
   
 }
