@@ -14,10 +14,10 @@ const Gameroom = {
     const sql = {
       text: `SELECT * FROM rooms`,
     };
-    return db.query(sql).then((dbResult) => dbResult.rows);
+    return db.query(sql).then((dbResult) => dbResult.rows[0]);
   },
   // After each turn room id is used to update game room content to push to all users
-  updateGame(room_id, content) {
+  updateGame(content, room_id) {
     const sql = {
       text: `UPDATE rooms SET words = $1 WHERE room_id = $2`,
       values: [content, room_id],

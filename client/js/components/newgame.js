@@ -1,9 +1,5 @@
 const socket = io();
 
-socket.on("testresponse", function (data) {
-  console.log(data);
-});
-
 // Client listens to event from server called "gameContent"
 socket.on("gameContent", function (data) {
   console.log(data);
@@ -11,6 +7,25 @@ socket.on("gameContent", function (data) {
   story.innerText = data;
 });
 
+// Client listens to event from server called "gameHasEnded"
+socket.on("gameHasEnded", function (data) {
+  const page = document.getElementById("page");
+  page.innerHTML = " ";
+  page.innerHTML = `
+    <h3> The game has ended! Here is your story..</h3>
+    <p id="story"></p>
+    <div id="start-button-div">
+      <button class="default-text buttons gamebuttons"> Play Again </button>
+    </div>
+  `
+  const story = document.getElementById("story");
+  story.innerText = data;
+
+  const playAgainButton = document.querySelector("button");
+  playAgainButton.addEventListener("click", (event) => {
+    renderNewGame();
+  });
+})
 
 function renderNewGame() {
   const page = document.getElementById("page");
@@ -29,7 +44,7 @@ function renderNewGame() {
             <p id="story"></p>
         </div>
 
-        <button type="submit" class="gamebuttons">END GAME</button>
+        <button type="submit" class="gamebuttons" id="endgame">END GAME</button>
         <div id="user-input">
         <form id="word-submit-form">
             <label for="next-word">Enter your next word: </label>
@@ -48,6 +63,12 @@ function renderNewGame() {
     socket.emit("addWord", userInput.value);
     userInput.value = "";
   });
+
+  // End game functionality
+  const endGameButton = document.getElementById("endgame");
+  endGameButton.addEventListener("click", event => {
+    socket.emit("endGame");
+  })
   
   // This sends an event to the server to start the game
   socket.emit("newGame", "startgame");
