@@ -1,24 +1,28 @@
 const express = require("express");
 const session = require("express-session");
-
+const bcrypt = require("bcrypt");
 const usersModel = require("../models/users");
-
 const login = express.Router();
 
-login.post("/login", (req, res) => {
+login.post("/login", async (req, res) => {
   const { username, password } = req.body;
-  usersModel.getUser(username).then((userObj) => {
-    if (!userObj[0]) {
-      res.status(400).json({ message: `User does not exist` });
-    } else if (userObj[0].password === password) {
-      req.session.user = userObj[0].username;
-      res.json({ message: `Successfully logged in as ${username}` });
-    } else {
-      res
-        .status(400)
-        .json({ message: `Password does not match username provided` });
-    }
-  });
+  const foundUser = await usersModel.getUser(username);
+
+  if (!foundUser[0]) {
+    res.status(400).json({ message: `User does not exist` });
+  }
+  const isPasswordCorrect = await bcrypt.compare(
+    password,
+    foundUser[0].password
+  );
+  if (isPasswordCorrect) {
+    req.session.user = foundUser[0].username;
+    res.json({ message: `Successfully logged in as ${username}` });
+  } else {
+    res
+      .status(400)
+      .json({ message: `Password does not match username provided` });
+  }
 });
 
 login.get("/loggedin", (req, res) => {
@@ -35,16 +39,17 @@ login.delete("/logout", (req, res) => {
   res.status(200).json({ message: "You have logged out successfully" });
 });
 
-login.post("/register", (req, res) => {
+login.post("/register", async (req, res) => {
   const { username, password, confirmpassword } = req.body;
-  console.log(
-    `Username: ${username}, Password: ${password}, Confirm Password: ${confirmpassword}`
-  );
   if (password === confirmpassword) {
-    usersModel.addUser(username, password);
-    res.status(200).json({ message: "user created" });
+    // Salt is generated then hashed together with the password
+    const salt = await bcrypt.genSalt(16);
+    hashedPass = await bcrypt.hash(password, salt);
+    // then the user and hashed pass are pushed to the DB and a 200 status is returned
+    usersModel.addUser(username, hashedPass);
+    res.status(200).json({ message: "User created" });
   } else {
-    res.status(400).json({ message: `Passwords don't match` });
+    res.status(400).json({ message: "Passwords don't match" });
   }
 });
 
