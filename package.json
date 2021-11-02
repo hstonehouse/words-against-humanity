@@ -20,6 +20,7 @@
   "homepage": "https://github.com/hstonehouse/words-against-humanity#readme",
   "dependencies": {
     "axios": "^0.23.0",
+    "bcrypt": "^5.0.1",
     "connect-pg-simple": "^7.0.0",
     "cors": "^2.8.5",
     "debug": "^2.6.9",

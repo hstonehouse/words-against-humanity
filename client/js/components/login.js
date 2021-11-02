@@ -33,25 +33,30 @@ function renderLogin() {
 
     const errorMessageDiv = document.getElementById("error-message");
 
-    axios
-      .post("/api/sessions/login", data) // this will go to router.post("/login") in your sessions.js
-      .then(() => {
-        renderLandingPage(); // if log in successful, render landing page
-      })
-      .catch((err) => {
-        const errorMessage = document.createElement("p");
+    const attemptLogin = async () => {
+      const errorMessage = document.createElement("p");
+      errorMessageDiv.innerHTML = "";
+      errorMessage.innerText = "Logging in...";
+      errorMessageDiv.append(errorMessage);
+      try {
+        const response = await axios.post("/api/sessions/login", data);
+        renderLandingPage();
+      } catch (err) {
         errorMessageDiv.innerHTML = "";
         errorMessage.innerText = "Log in failed. Please try again.";
         errorMessageDiv.append(errorMessage);
-      });
-  });
+      }
+    };
 
-  // Register button
-  const register = document.getElementById("register");
+    attemptLogin();
 
-  register.addEventListener("click", (event) => {
-    const page = document.getElementById("page");
-    page.innerHTML = "";
-    renderRegister();
+    // Register button
+    const register = document.getElementById("register");
+
+    register.addEventListener("click", (event) => {
+      const page = document.getElementById("page");
+      page.innerHTML = "";
+      renderRegister();
+    });
   });
 }
