@@ -18,7 +18,8 @@ function renderLandingPage() {
       const header = document.getElementById("header-nav");
       const userEl = document.createElement("p");
       userEl.id = "user-welcome";
-      userEl.innerText = `Welcome, ${response.data.username}!`;
+      userEl.innerText = `Welcome, 
+        ${response.data.username}!`;
       header.prepend(userEl);
     });
 
@@ -28,7 +29,7 @@ function renderLandingPage() {
     startButton.innerText = "START GAME";
     logOutButton.type = "submit";
     logOutButton.id = "logout";
-    logOutButton.className = "register buttons default-text";
+    logOutButton.className = "buttons default-text";
     logOutButton.value = "Log Out";
     page.append(randomStoryDiv);
     randomStoryDiv.append(storyParagraph);

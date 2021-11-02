@@ -33,7 +33,9 @@ body {
 /* Words Against Humanity Header */
 #header-nav {
     display: flex;
+    grid-template-columns: 1fr 3fr 1fr;
     justify-content: center;
+    align-items: center;
 }
 h1.title {
     color: #FFFFFF;
@@ -45,7 +47,12 @@ h1.title {
 }
 
 #user-welcome {
-    color: white;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 54px;
+    text-align: center;
+    color: #FFFFFF;
+    text-shadow: 1px 4px 4px #000000;
 }
 
 /* Please Log In */
@@ -138,13 +145,15 @@ input[name=username], input[name=password], input[name=confirmpassword]{
     border: none;
     margin-top: 30px;
 }
-#logout{
+#logout {
     font-weight: 500;
     font-size: 36px;
     line-height: 54px;
     text-align: center;
     color: #FFFFFF;
     text-shadow: 1px 4px 4px #000000;
+    background: none;
+    border: none;
 }
 
 
@@ -190,4 +199,139 @@ input[name=username], input[name=password], input[name=confirmpassword]{
 }
 #user-welcome {
     border: red;
+}
+
+/* Game Page */
+
+#game-page {
+    display: grid;
+    grid-template-areas:
+        "rules story turn"
+        "rules1 story1 turn1";
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: auto;
+}
+
+#rules-div {
+    grid-area: rules;
+    width: 249px;
+    height: 326px;
+    left: 50px;
+    top: 225px;
+    margin: 20px;
+    background: rgba(196, 196, 196, 0.8);
+}
+
+#rules-head {
+    grid-area: rules;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 21px;
+    text-align: center;
+    text-decoration-line: underline;
+    color: #FFFFFF;
+    text-shadow: 1px 4px 4px #000000;
+}
+
+#steps {
+    grid-area: rules;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    padding: 0;
+    align-items: center;
+    color: #FFFFFF;
+    text-shadow: 1px 4px 4px #000000;
+}
+
+#story-box {
+    grid-area: story;
+    width: 815px;
+    height: 528px;
+    left: 335px;
+    top: 225px;
+    margin: 20px;
+    background: rgba(196, 196, 196, 0.95);
+}
+
+#phrase {
+    grid-area: story;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
+    text-align: center;
+    color: #FFFFFF;
+    text-shadow: 1px 4px 4px rgba(0, 0, 0, 0.75);
+}
+
+#story {
+    grid-area: story;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
+    text-align: center;
+    color: #FFFFFF;
+    text-shadow: 1px 4px 4px rgba(0, 0, 0, 0.75);
+}
+
+#endgame {
+    grid-area: rules1;
+    margin: 20px;
+    width: 249px;
+    height: 72px;
+    left: 50px;
+    top: 681px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 54px;
+    text-align: center;
+    color: #FFFFFF;
+    text-shadow: 1px 4px 4px #000000;
+    background: #FB7171;
+}
+
+#user-input {
+    grid-area: story1;
+    margin: 20px;
+    background: #FFFFFF;
+}
+
+#word-submit-form {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 36px;
+    padding-top: 20px;
+    text-align: center;
+    color: #000000;
+}
+
+#next-word[type=text] {
+    border: none;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 36px;
+    font-family: 'Josefin Sans', sans-serif;
+    color: #FB7171;
+}
+
+#enter[type=submit] {
+    all: unset;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 36px;
+	color: lightslategray;
+	font: inherit;
+	cursor: pointer;
+}
+
+#enter[type=submit]:focus {
+    outline: #FB7171;
 }

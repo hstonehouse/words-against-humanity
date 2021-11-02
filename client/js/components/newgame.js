@@ -30,27 +30,37 @@ socket.on("gameHasEnded", function (data) {
 function renderNewGame() {
   const page = document.getElementById("page");
   page.innerHTML = `
-        <div id="rules">
-            <h2>How to play:</h2>
-            <ol>
-                <li>Enter a word</li>
-                <li>Try to make the most creative, ridiculous and silly story you can within 200 words</li>
-                <li>You can end the game early if you have made the best story under 200 words</li>
-            </ol>
+        <div id="game-page">
+            <div id="rules-div">
+                <div id="rules-head"> 
+                    <h3>How to play:</h2>
+                </div>
+                <div id="steps">
+                    <ol>
+                        <li>Enter a word</li>
+                        <li>Try to make the most creative, ridiculous and silly story you can within 200 words</li>
+                        <li>You can end the game early if you have made the best story under 200 words</li>
+                    </ol>
+                </div>
             </div>
 
-        <div id="game-story">
-            <p id="phrase"></p>
-            <p id="story"></p>
-        </div>
+            <div id="story-box">
+                <div id="game-story default-text">
+                    <p id="phrase"></p>
+                    <p id="story"></p>
+                </div>
+            </div>
 
-        <button type="submit" class="gamebuttons" id="endgame">END GAME</button>
-        <div id="user-input">
-        <form id="word-submit-form">
-            <label for="next-word">Enter your next word: </label>
-            <input type="text" name="next-word" id="next-word">
-            <input type="submit" value="Press ENTER to Submit">
-        </form>
+            <button type="submit" class="gamebuttons" id="endgame">END GAME</button>
+            <div id="user-input">
+                <form id="word-submit-form">
+                    <label for="next-word">Enter your next word: </label>
+                    <input type="text" name="next-word" size="30" id="next-word">
+                    <input id="enter" type="submit" value="Press ENTER to Submit">
+                </form>
+            </div>
+
+            <h3 id="whoseturn"></h3>
         </div>
     `;
 
