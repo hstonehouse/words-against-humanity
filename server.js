@@ -10,7 +10,7 @@ const roomController = require("./controllers/roomcontroller");
 const phraseController = require("./controllers/phrasescontroller");
 const phrases = require("./models/phrases");
 const rooms = require("./models/gameroom");
-const stories = require("./models/stories")
+const stories = require("./models/stories");
 const port = process.env.PORT || 3000;
 const app = express();
 const server = app.listen(port, () =>
@@ -30,8 +30,8 @@ io.on("connection", (socket) => {
   // Server listens to event from client called "addWord"
   socket.on("addWord", (newWord) => {
     // Retrieve the game from db and then update it
-    rooms.retrieveGame().then((response)=>{
-      const entireStory = `${response.words} ${newWord} `
+    rooms.retrieveGame().then((response) => {
+      const entireStory = `${response.words} ${newWord} `;
       rooms.updateGame(entireStory, response.room_id);
       socket.broadcast.emit("gameContent", entireStory);
       // Filter out the player array for the person who just played so they can't get chosen to play again
@@ -76,16 +76,17 @@ io.on("connection", (socket) => {
 
   // Server listens to event from client called "endGame"
   socket.on("endGame", () => {
-  rooms.retrieveGame().then((response) => {
-    // Add story to database
-    stories.addStory(response.words);
-    // Server sends an event "gameHasEnded" back to the client, along with the story
-    // This will send out the event to everybody who is connected to the game
-    io.emit("gameHasEnded", response.words);
-    //Delete the gameroom
-    rooms.deleteGame(response.room_id);
-    })
-  })
+
+    rooms.retrieveGame().then((response) => {
+      // Add story to database
+      stories.addStory(response.words);
+      // Server sends an event "gameHasEnded" back to the client, along with the story
+      // This will send out the event to everybody who is connected to the game
+      io.emit("gameHasEnded", response.words);
+      //Delete the gameroom
+      rooms.deleteGame(response.room_id);
+    });
+  });
 });
 
 app.use(
