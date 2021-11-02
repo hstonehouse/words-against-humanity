@@ -1,5 +1,17 @@
 const socket = io();
 
+socket.on("testresponse", function (data) {
+  console.log(data);
+});
+
+// Client listens to event from server called "gameContent"
+socket.on("gameContent", function (data) {
+  console.log(data);
+  const story = document.getElementById("story");
+  story.innerText = data;
+});
+
+
 function renderNewGame() {
   const page = document.getElementById("page");
   page.innerHTML = `
@@ -26,15 +38,6 @@ function renderNewGame() {
         </form>
         </div>
     `;
-  socket.emit("newGameConnect", "startgame");
-  socket.on("testresponse", function (data) {
-    console.log(data);
-  });
-  socket.on("newGameConnect", function (data) {
-    console.log(data);
-    const story = document.getElementById("story");
-    story.append(data);
-  });
 
   const form = document.querySelector("form");
   form.addEventListener("submit", (event) => {
@@ -42,12 +45,11 @@ function renderNewGame() {
     let userInput = document.getElementById("next-word");
     const story = document.getElementById("story");
     story.append(`${userInput.value} `);
-    socket.emit("broadcast", userInput.value);
+    socket.emit("addWord", userInput.value);
     userInput.value = "";
   });
-  socket.on("wordInput", function (data) {
-    console.log(data);
-    const story = document.getElementById("story");
-    story.append(` ${data} `);
-  });
+  
+  // This sends an event to the server to start the game
+  socket.emit("newGame", "startgame");
+  
 }
