@@ -18,10 +18,14 @@ const server = app.listen(port, () =>
 );
 
 const io = socketIO(server);
+let players = [];
 
 // What happens when someone connects and disconnects to your app (via socket)
 io.on("connection", (socket) => {
   console.log("Client connected");
+  // When user connects, put their socket id into the players array
+  const id = socket.id
+  players.push(id)
 
   // Server listens to event from client called "addWord"
   socket.on("addWord", (newWord) => {
@@ -30,10 +34,20 @@ io.on("connection", (socket) => {
       const entireStory = `${response.words} ${newWord} `;
       rooms.updateGame(entireStory, response.room_id);
       socket.broadcast.emit("gameContent", entireStory);
+      // Filter out the player array for the person who just played so they can't get chosen to play again
+      const nextPossiblePlayers = players.filter(player => player !== socket.id)
+      // Choose the next player (this will be their socket id)
+      const nextPlayer = nextPossiblePlayers[Math.floor(Math.random() * nextPossiblePlayers.length)]
+      io.to(nextPlayer).emit("itsYourTurn");
     });
   });
 
-  socket.on("disconnect", () => console.log("Client disconnected"));
+  // When the user disconnects, take them out of the players array so they don't get picked to take a turn
+  socket.on("disconnect", () => {
+    console.log("Client disconnected")
+    players = players.filter(player => player !== socket.id)
+    console.log(players);
+  });
 
   // Server listens to event from client called "newGame"
   socket.on("newGame", () => {
@@ -46,16 +60,23 @@ io.on("connection", (socket) => {
           console.log("Random phrase:" + randPhrase.content);
           // Server sends event called "gameContent" back to client
           socket.emit("gameContent", randPhrase.content);
+          socket.emit("itsYourTurn");
         });
       } else {
         // Server sends event called "gameContent" back to client
         socket.emit("gameContent", response.words);
+        if (players.length === 1){
+          socket.emit("itsYourTurn");
+        } else {
+          socket.emit("notYourTurn")
+        }        
       }
     });
   });
 
   // Server listens to event from client called "endGame"
   socket.on("endGame", () => {
+
     rooms.retrieveGame().then((response) => {
       // Add story to database
       stories.addStory(response.words);
