@@ -10,6 +10,7 @@ login.post("/login", async (req, res) => {
 
   if (!foundUser[0]) {
     res.status(400).json({ message: `User does not exist` });
+    return
   }
   const isPasswordCorrect = await bcrypt.compare(
     password,
