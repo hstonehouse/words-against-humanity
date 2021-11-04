@@ -87,6 +87,7 @@ label[for=password]{
 }
 label[for=confirmpassword]{
     grid-area: confirm-password-label;
+    margin-top: 17px;
 }
 
 label[for=username], label[for=password], label[for=confirmpassword]{
