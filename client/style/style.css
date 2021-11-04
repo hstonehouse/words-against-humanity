@@ -335,3 +335,18 @@ input[name=username], input[name=password], input[name=confirmpassword]{
 #enter[type=submit]:focus {
     outline: #FB7171;
 }
+
+/* Game Over Page */
+
+h3 {
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 30px;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+#flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}

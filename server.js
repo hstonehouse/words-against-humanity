@@ -23,10 +23,8 @@ let players = [];
 
 // What happens when someone connects and disconnects to your app (via socket)
 io.on("connection", (socket) => {
-  console.log("Client connected");
-  // When user connects, put their socket id into the players array
-  const id = socket.id;
-  players.push(id);
+
+  console.log("Client connected");  
 
   // Server listens to event from client called "addWord"
   socket.on("addWord", (newWord) => {
@@ -42,16 +40,16 @@ io.on("connection", (socket) => {
         const entireStory = `${response.words} ${newWord} `;
         rooms.updateGame(entireStory, response.room_id);
         socket.broadcast.emit("gameContent", entireStory);
-        // Filter out the player array for the person who just played so they can't get chosen to play again
-        const nextPossiblePlayers = players.filter(
-          (player) => player !== socket.id
-        );
         // Choose the next player (this will be their socket id)
-        const nextPlayer =
-          nextPossiblePlayers[
-            Math.floor(Math.random() * nextPossiblePlayers.length)
-          ];
-        io.to(nextPlayer).emit("itsYourTurn");
+        const currentPlayerIndex = players.indexOf(socket.id);
+        // If the current player is the last player in the array, then go back to the beginning
+        if (currentPlayerIndex + 1 === players.length){
+          const nextPlayer = players[0];
+          io.to(nextPlayer).emit("itsYourTurn");
+        } else {
+          const nextPlayer = players[currentPlayerIndex + 1];
+          io.to(nextPlayer).emit("itsYourTurn");
+        }
       }
     });
   });
@@ -65,6 +63,11 @@ io.on("connection", (socket) => {
 
   // Server listens to event from client called "newGame"
   socket.on("newGame", () => {
+    // When user presses Start Game, put their socket id into the players array
+    const id = socket.id
+    players.push(id)
+    console.log("Player has joined game", players);
+
     rooms.retrieveGame().then((response) => {
       if (response == undefined) {
         phrases.getPhrase().then((phraseObj) => {
@@ -74,16 +77,24 @@ io.on("connection", (socket) => {
           console.log("Random phrase:" + randPhrase.content);
           // Server sends event called "gameContent" back to client
           socket.emit("gameContent", randPhrase.content);
-          socket.emit("itsYourTurn");
+          // If you're the only one in the game, you have to wait for other players
+          if (players.length === 1){
+            socket.emit("waitForOtherPlayers");
+          } else {
+            socket.emit("itsYourTurn");
+          }
         });
       } else {
         // Server sends event called "gameContent" back to client
         socket.emit("gameContent", response.words);
         if (players.length === 1) {
-          socket.emit("itsYourTurn");
+          socket.emit("waitForOtherPlayers");
+        } else if (players.length === 2){
+          const nextPlayer = players[0];
+          io.to(nextPlayer).emit("itsYourTurn");
         } else {
           socket.emit("notYourTurn");
-        }
+        }        
       }
     });
   });
