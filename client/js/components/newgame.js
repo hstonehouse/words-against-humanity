@@ -1,5 +1,10 @@
 const socket = io();
 
+// When the page is refreshed, disconnect the socket
+window.addEventListener("beforeunload", function(e){
+  socket.disconnect()
+}, false);
+
 // Client listens to event from server called "gameContent"
 socket.on("gameContent", function (data) {
   console.log(data);
@@ -47,6 +52,7 @@ socket.on("gameHasEnded", function (data) {
       <div id="start-button-div">
         <button class="default-text buttons gamebuttons"> Play Again </button>
       </div>
+
     </div>
   `
   const story = document.getElementById("story-paragraph");

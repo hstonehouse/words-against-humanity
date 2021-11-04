@@ -22,6 +22,7 @@ let players = [];
 
 // What happens when someone connects and disconnects to your app (via socket)
 io.on("connection", (socket) => {
+
   console.log("Client connected");  
 
   // Server listens to event from client called "addWord"
