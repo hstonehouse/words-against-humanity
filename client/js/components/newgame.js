@@ -30,13 +30,16 @@ socket.on("gameHasEnded", function (data) {
   const page = document.getElementById("page");
   page.innerHTML = " ";
   page.innerHTML = `
-    <h3> The game has ended! Here is your story..</h3>
-    <p id="story"></p>
+    <h3> The game has ended! Here is your story...</h3>
+    <div id="story-div"> 
+      <p id="story-paragraph"></p>
+    </div>
+    
     <div id="start-button-div">
       <button class="default-text buttons gamebuttons"> Play Again </button>
     </div>
   `
-  const story = document.getElementById("story");
+  const story = document.getElementById("story-paragraph");
   story.innerText = data;
 
   const playAgainButton = document.querySelector("button");
