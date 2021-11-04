@@ -338,6 +338,7 @@ input[name=username], input[name=password], input[name=confirmpassword]{
     outline: #FB7171;
 }
 
+
 #whoseturn {
     grid-area: turn;
     font-style: normal;
@@ -350,4 +351,18 @@ input[name=username], input[name=password], input[name=confirmpassword]{
     text-align: center;
     color: #FFFFFF;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+
+/* Game Over Page */
+
+h3 {
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 30px;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+#flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center
 }
