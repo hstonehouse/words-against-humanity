@@ -31,16 +31,20 @@ function renderRegister() {
 
     const errorMessageDiv = document.getElementById("error-message");
 
-    axios
-      .post("/api/sessions/register", data) // this will go to router.post("/login") in your sessions.js
-
-      .then(() => {
-        renderLogin(); // if log in successful, render landing page
-      })
-      .catch((err) => {
-        const errorMessage = document.createElement("p");
+    const attemptRegister = async () => {
+      const errorMessage = document.createElement("p");
+      errorMessageDiv.innerHTML = "";
+      errorMessage.innerText = "Registering User...";
+      errorMessageDiv.append(errorMessage);
+      try {
+        const response = await axios.post("/api/sessions/register", data);
+        renderLogin();
+      } catch (err) {
+        errorMessageDiv.innerHTML = "";
         errorMessage.innerText = "Passwords do not match";
         errorMessageDiv.append(errorMessage);
-      });
+      }
+    };
+    attemptRegister();
   });
 }
