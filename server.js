@@ -8,6 +8,7 @@ const storiesController = require("./controllers/storycontroller");
 const loginController = require("./controllers/logincontroller");
 const roomController = require("./controllers/roomcontroller");
 const phraseController = require("./controllers/phrasescontroller");
+const errorMiddleware = require("./middleware/error");
 const phrases = require("./models/phrases");
 const rooms = require("./models/gameroom");
 const stories = require("./models/stories");
@@ -16,7 +17,7 @@ const app = express();
 const server = app.listen(port, () =>
   console.log(`Listening on http://localhost:${port}`)
 );
-
+app.use(errorMiddleware);
 const io = socketIO(server);
 let players = [];
 
