@@ -3,7 +3,7 @@ function renderRegister() {
   page.innerHTML = `
         <div class="flex-center">
             <section class="login">
-                <h2>Please Log In</h2>
+                <h2>Please Register</h2>
                 <div id="error-message"></div>
                 <form id="login-form"> 
                     <div class="label-grid">
