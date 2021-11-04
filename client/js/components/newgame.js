@@ -16,6 +16,15 @@ socket.on("itsYourTurn", function (data) {
   whoseTurn.innerText = "It's your turn!"
 });
 
+// Client listens to event from server called "waitForOtherPlayers"
+socket.on("waitForOtherPlayers", function (data) {
+  const inputField = document.getElementById("next-word");
+  inputField.setAttribute("disabled", true);
+  const whoseTurn = document.getElementById("whoseturn");
+  whoseTurn.innerText = " ";
+  whoseTurn.innerText = "PLEASE WAIT FOR \n OTHER PLAYERS."
+})
+
 // Client listens to event from server called "notYourTurn"
 socket.on("notYourTurn", function (data) {
   const inputField = document.getElementById("next-word");
@@ -31,12 +40,16 @@ socket.on("gameHasEnded", function (data) {
   page.innerHTML = " ";
   page.innerHTML = `
     <h3> The game has ended! Here is your story..</h3>
-    <p id="story"></p>
-    <div id="start-button-div">
-      <button class="default-text buttons gamebuttons"> Play Again </button>
+    <div id="flex">
+      <div id="story-div">
+        <p id="story-paragraph"></p>
+      </div>
+      <div id="start-button-div">
+        <button class="default-text buttons gamebuttons"> Play Again </button>
+      </div>
     </div>
   `
-  const story = document.getElementById("story");
+  const story = document.getElementById("story-paragraph");
   story.innerText = data;
 
   const playAgainButton = document.querySelector("button");
