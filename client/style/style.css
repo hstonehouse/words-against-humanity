@@ -22,7 +22,7 @@ body {
     background-color: rgba(255, 249, 249, 0.7);
     border: 1px solid #000000;
     box-sizing: border-box;
-    width: 630px;
+    width: 550px;
     margin-top: 30px;
 }
 
@@ -48,8 +48,8 @@ h1.title {
 
 #user-welcome {
     font-weight: 500;
-    font-size: 36px;
-    line-height: 54px;
+    font-size: 20px;
+    line-height: 25px;
     text-align: center;
     color: #FFFFFF;
     text-shadow: 1px 4px 4px #000000;
@@ -160,10 +160,11 @@ input[name=username], input[name=password], input[name=confirmpassword]{
 /* Landing page styling */
 
 #story-div {
-    width: 500px;
+    width: 550px;
     height: 484px;
     left: 252px;
     top: 208px;
+    overflow: scroll;
     padding: 0;
     background: rgba(196, 196, 196, 0.8);
     border: 1px solid #FFFFFF;
@@ -172,8 +173,8 @@ input[name=username], input[name=password], input[name=confirmpassword]{
 #story-paragraph {
     font-style: normal;
     font-weight: normal;
-    font-size: 20px;
-    line-height: 35px;
+    font-size: 28px;
+    line-height: 40px;
     margin: 5px;
     color: #FFFFFF;
     text-shadow: 1px 3px 3px #000000;  
@@ -297,6 +298,7 @@ input[name=username], input[name=password], input[name=confirmpassword]{
 
 #user-input {
     grid-area: story1;
+    width: 815px;
     margin: 20px;
     background: #FFFFFF;
 }
@@ -334,4 +336,18 @@ input[name=username], input[name=password], input[name=confirmpassword]{
 
 #enter[type=submit]:focus {
     outline: #FB7171;
+}
+
+#whoseturn {
+    grid-area: turn;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #FFFFFF;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }

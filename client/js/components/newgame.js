@@ -18,7 +18,7 @@ socket.on("itsYourTurn", function (data) {
   inputField.removeAttribute("disabled");
   const whoseTurn = document.getElementById("whoseturn");
   whoseTurn.innerText = " ";
-  whoseTurn.innerText = "It's your turn!"
+  whoseTurn.innerText = "IT'S YOUR \n TURN!"
 });
 
 // Client listens to event from server called "notYourTurn"
@@ -27,7 +27,7 @@ socket.on("notYourTurn", function (data) {
   inputField.setAttribute("disabled", true);
   const whoseTurn = document.getElementById("whoseturn");
   whoseTurn.innerText = " ";
-  whoseTurn.innerText = "Not your turn."
+  whoseTurn.innerText = "NOT YOUR \n TURN."
 })
 
 // Client listens to event from server called "gameHasEnded"
@@ -41,7 +41,7 @@ socket.on("gameHasEnded", function (data) {
     </div>
     
     <div id="start-button-div">
-      <button class="default-text buttons gamebuttons"> Play Again </button>
+      <button class="default-text buttons gamebuttons"> PLAY AGAIN </button>
     </div>
   `
   const story = document.getElementById("story-paragraph");
@@ -81,7 +81,7 @@ function renderNewGame() {
             <div id="user-input">
                 <form id="word-submit-form">
                     <label for="next-word">Enter your next word: </label>
-                    <input type="text" name="next-word" size="30" id="next-word">
+                    <input type="text" name="next-word" size="20" id="next-word">
                     <input id="enter" type="submit" value="Press ENTER to Submit">
                 </form>
             </div>
@@ -106,7 +106,7 @@ function renderNewGame() {
 
     const whoseTurn = document.getElementById("whoseturn");
     whoseTurn.innerText = " ";
-    whoseTurn.innerText = "Not your turn."
+    whoseTurn.innerText = "NOT YOUR \n TURN."
   });
 
   // End game functionality
