@@ -133,5 +133,4 @@ function renderNewGame() {
   
   // This sends an event to the server to start the game
   socket.emit("newGame");
-  
 }
