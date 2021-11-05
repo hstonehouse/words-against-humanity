@@ -85,7 +85,7 @@ function renderNewGame() {
                     <ol>
                         <li>Enter a word</li><br/>
                         <li>Try to make the most creative, ridiculous and silly story you can!</li><br/>
-                        <li>The game ends when you reach 50 unique word (and, I, the etc. don't count!) or when you hit the End Game button!</li>
+                        <li>The game ends when you reach 50 unique words (and, I, the etc. don't count!) or when you hit the End Game button!</li>
                     </ol>
                 </div>
             </div>
