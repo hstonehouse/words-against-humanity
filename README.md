@@ -6,10 +6,9 @@ Words Against Humanity is a interactive word game, whereby players take turns in
 
 - Once you have created an account and logged in, you will be presented with a random existing story from the database
 - Click START GAME to begin a new/join an existing game. The prompt on the right-hand side of the game - page indicates if it is your turn to enter a word
-- Enter a word - no spaces or special characters (except for punctuation)
 - Each player will enter one word at a time to formulate a story
-- Try to make the most creative, ridiculous and silly story you can within 200 words
-- You can end the game and save your story early by pressing the END GAME buttonif you have finished in under 200 words
+- Try to make the most creative, ridiculous and silly story you can within 50 unique words
+- You can end the game and save your story early by pressing the END GAME button if you have finished in under 50 words.
 - Once the game is ended, your final story will be displayed on screen and saved to the 'stories' database. Your story will then also be visible (at random) on the START GAME/landing page
 
 

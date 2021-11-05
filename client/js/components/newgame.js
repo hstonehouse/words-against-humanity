@@ -1,9 +1,13 @@
 const socket = io();
 
 // When the page is refreshed, disconnect the socket
-window.addEventListener("beforeunload", function(e) {
-  socket.disconnect();
-}, false);
+window.addEventListener(
+  "beforeunload",
+  function (e) {
+    socket.disconnect();
+  },
+  false
+);
 
 // Client listens to event from server called "gameContent"
 socket.on("gameContent", function (data) {
@@ -19,7 +23,7 @@ socket.on("itsYourTurn", function (data) {
   submitButton.removeAttribute("disabled");
   const whoseTurn = document.getElementById("whoseturn");
   whoseTurn.innerText = " ";
-  whoseTurn.innerText = "IT'S YOUR \n TURN!"
+  whoseTurn.innerText = "IT'S YOUR \n TURN!";
 });
 
 // Client listens to event from server called "waitForOtherPlayers"
@@ -30,8 +34,8 @@ socket.on("waitForOtherPlayers", function (data) {
   submitButton.setAttribute("disabled", true);
   const whoseTurn = document.getElementById("whoseturn");
   whoseTurn.innerText = " ";
-  whoseTurn.innerText = "PLEASE WAIT FOR \n OTHER PLAYERS."
-})
+  whoseTurn.innerText = "PLEASE WAIT FOR \n OTHER PLAYERS.";
+});
 
 // Client listens to event from server called "notYourTurn"
 socket.on("notYourTurn", function (data) {
@@ -41,8 +45,8 @@ socket.on("notYourTurn", function (data) {
   submitButton.setAttribute("disabled", true);
   const whoseTurn = document.getElementById("whoseturn");
   whoseTurn.innerText = " ";
-  whoseTurn.innerText = "NOT YOUR \n TURN."
-})
+  whoseTurn.innerText = "NOT YOUR \n TURN.";
+});
 
 // Client listens to event from server called "gameHasEnded"
 socket.on("gameHasEnded", function (data) {
@@ -59,7 +63,7 @@ socket.on("gameHasEnded", function (data) {
         <button class="default-text buttons gamebuttons"> PLAY AGAIN </button>
       </div>
     </div>
-  `
+  `;
   const story = document.getElementById("story-paragraph");
   story.innerText = data;
 
@@ -67,7 +71,7 @@ socket.on("gameHasEnded", function (data) {
   playAgainButton.addEventListener("click", (event) => {
     renderNewGame();
   });
-})
+});
 
 function renderNewGame() {
   const page = document.getElementById("page");
@@ -79,9 +83,9 @@ function renderNewGame() {
                 </div>
                 <div id="steps">
                     <ol>
-                        <li>Enter a word</li>
-                        <li>Try to make the most creative, ridiculous and silly story you can within 200 words</li>
-                        <li>You can end the game early if you have made the best story under 200 words</li>
+                        <li>Enter a word</li><br/>
+                        <li>Try to make the most creative, ridiculous and silly story you can!</li><br/>
+                        <li>The game ends when you reach 50 unique word (and, I, the etc. don't count!) or when you hit the End Game button!</li>
                     </ol>
                 </div>
             </div>
@@ -122,15 +126,15 @@ function renderNewGame() {
 
     const whoseTurn = document.getElementById("whoseturn");
     whoseTurn.innerText = " ";
-    whoseTurn.innerText = "NOT YOUR \n TURN."
+    whoseTurn.innerText = "NOT YOUR \n TURN.";
   });
 
   // End game functionality
   const endGameButton = document.getElementById("endgame");
-  endGameButton.addEventListener("click", event => {
+  endGameButton.addEventListener("click", (event) => {
     socket.emit("endGame");
-  })
-  
+  });
+
   // This sends an event to the server to start the game
   socket.emit("newGame");
 }
