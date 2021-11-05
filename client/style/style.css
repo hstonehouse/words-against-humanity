@@ -164,7 +164,7 @@ input[name=username], input[name=password], input[name=confirmpassword]{
     height: 484px;
     left: 252px;
     top: 208px;
-    overflow: scroll;
+    overflow-y: auto;
     padding: 0;
     background: rgba(196, 196, 196, 0.8);
     border: 1px solid #FFFFFF;

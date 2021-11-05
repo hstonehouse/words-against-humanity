@@ -1,13 +1,12 @@
 const socket = io();
 
 // When the page is refreshed, disconnect the socket
-window.addEventListener("beforeunload", function(e){
-  socket.disconnect()
+window.addEventListener("beforeunload", function(e) {
+  socket.disconnect();
 }, false);
 
 // Client listens to event from server called "gameContent"
 socket.on("gameContent", function (data) {
-  console.log(data);
   const story = document.getElementById("story");
   story.innerText = data;
 });
@@ -16,6 +15,8 @@ socket.on("gameContent", function (data) {
 socket.on("itsYourTurn", function (data) {
   const inputField = document.getElementById("next-word");
   inputField.removeAttribute("disabled");
+  const submitButton = document.getElementById("enter");
+  submitButton.removeAttribute("disabled");
   const whoseTurn = document.getElementById("whoseturn");
   whoseTurn.innerText = " ";
   whoseTurn.innerText = "IT'S YOUR \n TURN!"
@@ -25,6 +26,8 @@ socket.on("itsYourTurn", function (data) {
 socket.on("waitForOtherPlayers", function (data) {
   const inputField = document.getElementById("next-word");
   inputField.setAttribute("disabled", true);
+  const submitButton = document.getElementById("enter");
+  submitButton.setAttribute("disabled", true);
   const whoseTurn = document.getElementById("whoseturn");
   whoseTurn.innerText = " ";
   whoseTurn.innerText = "PLEASE WAIT FOR \n OTHER PLAYERS."
@@ -34,6 +37,8 @@ socket.on("waitForOtherPlayers", function (data) {
 socket.on("notYourTurn", function (data) {
   const inputField = document.getElementById("next-word");
   inputField.setAttribute("disabled", true);
+  const submitButton = document.getElementById("enter");
+  submitButton.setAttribute("disabled", true);
   const whoseTurn = document.getElementById("whoseturn");
   whoseTurn.innerText = " ";
   whoseTurn.innerText = "NOT YOUR \n TURN."
@@ -45,7 +50,7 @@ socket.on("gameHasEnded", function (data) {
   page.innerHTML = " ";
   page.innerHTML = `
 
-    <h3> The game has ended! Here is your story..</h3>
+    <h3> The game has ended! Here is the final abomination...</h3>
     <div id="flex">
       <div id="story-div">
         <p id="story-paragraph"></p>
@@ -92,7 +97,7 @@ function renderNewGame() {
             <div id="user-input">
                 <form id="word-submit-form">
                     <label for="next-word">Enter your next word: </label>
-                    <input type="text" name="next-word" size="20" id="next-word">
+                    <input type="text" name="next-word" size="20" id="next-word" required>
                     <input id="enter" type="submit" value="Press ENTER to Submit">
                 </form>
             </div>
