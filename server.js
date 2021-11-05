@@ -113,6 +113,8 @@ io.on("connection", (socket) => {
       io.emit("gameHasEnded", response.words);
       //Delete the gameroom
       rooms.deleteGame(response.room_id);
+      // Empty the players array
+      players = [];
     });
   });
 });
