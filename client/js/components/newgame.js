@@ -101,7 +101,7 @@ function renderNewGame() {
             <div id="user-input">
                 <form id="word-submit-form">
                     <label for="next-word">Enter your next word: </label>
-                    <input type="text" name="next-word" size="20" id="next-word" required>
+                    <input type="text" name="next-word" size="20" id="next-word" maxlength="20" required>
                     <input id="enter" type="submit" value="Press ENTER to Submit">
                 </form>
             </div>
