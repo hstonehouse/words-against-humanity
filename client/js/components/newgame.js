@@ -17,6 +17,9 @@ socket.on("gameContent", function (data) {
 
 // Client listens to event from server called "itsYourTurn"
 socket.on("itsYourTurn", function (data) {
+  const turnDiv = document.getElementById("turn-div");
+  turnDiv.classList.remove("redbox");
+  turnDiv.classList.add("greenbox");
   const inputField = document.getElementById("next-word");
   inputField.removeAttribute("disabled");
   const submitButton = document.getElementById("enter");
@@ -28,6 +31,9 @@ socket.on("itsYourTurn", function (data) {
 
 // Client listens to event from server called "waitForOtherPlayers"
 socket.on("waitForOtherPlayers", function (data) {
+  const turnDiv = document.getElementById("turn-div");
+  turnDiv.classList.remove("greenbox");
+  turnDiv.classList.add("redbox");
   const inputField = document.getElementById("next-word");
   inputField.setAttribute("disabled", true);
   const submitButton = document.getElementById("enter");
@@ -39,6 +45,9 @@ socket.on("waitForOtherPlayers", function (data) {
 
 // Client listens to event from server called "notYourTurn"
 socket.on("notYourTurn", function (data) {
+  const turnDiv = document.getElementById("turn-div");
+  turnDiv.classList.remove("greenbox");
+  turnDiv.classList.add("redbox");
   const inputField = document.getElementById("next-word");
   inputField.setAttribute("disabled", true);
   const submitButton = document.getElementById("enter");
@@ -105,11 +114,10 @@ function renderNewGame() {
                     <input id="enter" type="submit" value="Press ENTER to Submit">
                 </form>
             </div>
-
-            <h3 id="whoseturn"></h3>
+            <div id="turn-div">
+              <h3 id="whoseturn"></h3>
+            </div>
         </div>
-
-        <h3 id="whoseturn"></h3>
     `;
 
   const form = document.querySelector("form");
