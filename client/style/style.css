@@ -7,7 +7,8 @@ body, .default-text {
 body {
     height: 100vh;
     margin: 0;
-    background-image: url("libraryBg.jpeg");
+    background-image: url("brick-wall.jpg");
+    background-size: contain;
 }
 
 #page {
@@ -216,11 +217,13 @@ input[name=username], input[name=password], input[name=confirmpassword]{
 #rules-div {
     grid-area: rules;
     width: 249px;
-    height: 326px;
+    height: 400px;
     left: 50px;
     top: 225px;
     margin: 20px;
-    background: rgba(196, 196, 196, 0.8);
+    background: rgba(0, 0, 0, 0.85);
+    padding: 10px;
+    border-radius: 20px;
 }
 
 #rules-head {
@@ -239,12 +242,11 @@ input[name=username], input[name=password], input[name=confirmpassword]{
     grid-area: rules;
     font-style: normal;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 20px;
     line-height: 21px;
-    padding: 0;
-    align-items: center;
+    padding-right: 27px;
     color: #FFFFFF;
-    text-shadow: 1px 4px 4px #000000;
+
 }
 
 #story-box {
@@ -254,7 +256,7 @@ input[name=username], input[name=password], input[name=confirmpassword]{
     left: 335px;
     top: 225px;
     margin: 20px;
-    background: rgba(196, 196, 196, 0.95);
+    background: rgba(0, 0, 0, 0.85);
 }
 
 #phrase {
@@ -274,7 +276,7 @@ input[name=username], input[name=password], input[name=confirmpassword]{
     font-weight: 600;
     font-size: 24px;
     line-height: 36px;
-    overflow: scroll;
+    overflow: auto;
     text-align: center;
     color: #FFFFFF;
     text-shadow: 1px 4px 4px rgba(0, 0, 0, 0.75);
@@ -339,12 +341,24 @@ input[name=username], input[name=password], input[name=confirmpassword]{
     outline: #FB7171;
 }
 
+#turn-div {
+    grid-area: turn;
+    height: 160px;
+    margin-top: 200px
+}
+
+.redbox {
+    background-color: red;
+}
+
+.greenbox {
+    background-color: green;
+}
 
 #whoseturn {
-    grid-area: turn;
     font-style: normal;
     font-weight: 600;
-    font-size: 36px;
+    font-size: 30px;
     line-height: 54px;
     display: flex;
     align-items: center;
