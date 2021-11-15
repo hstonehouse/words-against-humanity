@@ -5,6 +5,7 @@ function renderLogin() {
             <section class="login">
                 <h2>Please Log In</h2>
                 <div id="error-message"></div>
+                <div class="green-text"></div>
                 <form id="login-form"> 
                     <div class="label-grid">
                         <label for="username">Username: </label>
@@ -22,7 +23,6 @@ function renderLogin() {
         <div class="flex-center">
             <button class="default-text buttons register" id="register">Register</button>
         </div>
-
     `;
 
     // Register button
@@ -41,26 +41,25 @@ function renderLogin() {
     const formData = new FormData(form); // grabs all the data from the form
     const data = Object.fromEntries(formData.entries()); // grab all the entries in the form and turns it into an object
 
-
     const errorMessageDiv = document.getElementById("error-message");
+    const loggingInDiv = document.querySelector(".green-text");
 
     const attemptLogin = async () => {
       const errorMessage = document.createElement("p");
+      const loggingIn = document.createElement("p");
       errorMessageDiv.innerHTML = "";
-      errorMessage.innerText = "Logging in...";
-      errorMessageDiv.append(errorMessage);
+      loggingIn.innerText = "Logging in...";
+      loggingInDiv.append(loggingIn);
       try {
         const response = await axios.post("/api/sessions/login", data);
         renderLandingPage();
       } catch (err) {
+        loggingInDiv.innerHTML = "";
         errorMessageDiv.innerHTML = "";
         errorMessage.innerText = "Log in failed. Please try again.";
         errorMessageDiv.append(errorMessage);
       }
     };
-
     attemptLogin();
-
-
   });
 }

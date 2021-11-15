@@ -70,6 +70,12 @@ h2 {
     color: rgb(250, 4, 4)
 }
 
+/* Logging in/registering styling */
+.green-text {
+    text-align: center;
+    color: green;
+}
+
 /* Labels and inputs - using grid layout */
 .label-grid{
     display: grid;

@@ -6,8 +6,6 @@ const express = require("express");
 const socketIO = require("socket.io");
 const storiesController = require("./controllers/storycontroller");
 const loginController = require("./controllers/logincontroller");
-const roomController = require("./controllers/roomcontroller");
-const phraseController = require("./controllers/phrasescontroller");
 const errorMiddleware = require("./middleware/error");
 const phrases = require("./models/phrases");
 const rooms = require("./models/gameroom");
@@ -20,6 +18,7 @@ const server = app.listen(port, () =>
 app.use(errorMiddleware);
 const io = socketIO(server);
 let players = [];
+let currentPlayer = '';
 
 // What happens when someone connects and disconnects to your app (via socket)
 io.on("connection", (socket) => {
@@ -40,15 +39,15 @@ io.on("connection", (socket) => {
         rooms.updateGame(entireStory, response.room_id);
         socket.broadcast.emit("gameContent", entireStory);
         socket.emit("notYourTurn");
-        // Choose the next player (this will be their socket id)
+        // Choose the next player
         const currentPlayerIndex = players.indexOf(socket.id);
         // If the current player is the last player in the array, then go back to the beginning
         if (currentPlayerIndex + 1 === players.length) {
-          const nextPlayer = players[0];
-          io.to(nextPlayer).emit("itsYourTurn");
+          currentPlayer = players[0];
+          io.to(currentPlayer).emit("itsYourTurn");
         } else {
-          const nextPlayer = players[currentPlayerIndex + 1];
-          io.to(nextPlayer).emit("itsYourTurn");
+          currentPlayer = players[currentPlayerIndex + 1];
+          io.to(currentPlayer).emit("itsYourTurn");
         };
       };
     });
@@ -61,7 +60,11 @@ io.on("connection", (socket) => {
     console.log(players);
     if (players.length === 1) {
       io.emit("waitForOtherPlayers");
-    };
+    } else if (currentPlayer === socket.id) {
+      // If the player disconnects while it's still their turn, then pick a new player to take a turn
+      currentPlayer = Math.floor(Math.random * players.length);
+      io.to(currentPlayer).emit("itsYourTurn");
+    } 
   });
 
   // Server listens to event from client called "newGame"
@@ -77,7 +80,6 @@ io.on("connection", (socket) => {
           const randPhraseIndex = Math.floor(Math.random() * phraseObj.length);
           const randPhrase = phraseObj[randPhraseIndex];
           rooms.initialGame(randPhrase.content);
-          console.log("Random phrase:" + randPhrase.content);
           // Server sends event called "gameContent" back to client
           socket.emit("gameContent", randPhrase.content);
           // If you're the only one in the game, you have to wait for other players
@@ -85,7 +87,7 @@ io.on("connection", (socket) => {
             socket.emit("waitForOtherPlayers");
           } else {
             socket.emit("itsYourTurn");
-          };
+          }
         });
       } else {
         // Server sends event called "gameContent" back to client
@@ -134,5 +136,3 @@ app.use(express.static("client"));
 app.use(express.json());
 app.use("/api/sessions", loginController);
 app.use("/api/stories", storiesController);
-app.use("/api/rooms", roomController);
-app.use("/api/phrase", phraseController);

@@ -42,8 +42,7 @@ function renderLandingPage() {
       axios.delete("api/sessions/logout").then(() => {
         page.innerHTML = "";
         header.innerHTML = "";
-        renderHeader();
-        renderLogin();
+        location.reload();
       });
     });
 
@@ -53,11 +52,4 @@ function renderLandingPage() {
     });
   });
 }
-//   axios.get("/api/rooms").then((response)=>{
-//     if (!response.body){
-//       // start a new game
-//     } else {
-//       // join the existing game
-//       // renderGame()
-//   }
-// })
+
