@@ -39,6 +39,7 @@ io.on("connection", (socket) => {
         const entireStory = `${response.words} ${newWord} `;
         rooms.updateGame(entireStory, response.room_id);
         socket.broadcast.emit("gameContent", entireStory);
+        socket.emit("notYourTurn");
         // Choose the next player (this will be their socket id)
         const currentPlayerIndex = players.indexOf(socket.id);
         // If the current player is the last player in the array, then go back to the beginning
