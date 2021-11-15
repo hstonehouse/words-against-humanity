@@ -5,6 +5,7 @@ function renderRegister() {
             <section class="login">
                 <h2>Please Register</h2>
                 <div id="error-message"></div>
+                <div class="green-text"></div>
                 <form id="login-form"> 
                     <div class="label-grid">
                         <label for="username">Username: </label>
@@ -30,16 +31,19 @@ function renderRegister() {
     const data = Object.fromEntries(formData.entries()); // grab all the entries in the form and turns it into an object
 
     const errorMessageDiv = document.getElementById("error-message");
+    const registeringDiv = document.querySelector(".green-text");
 
     const attemptRegister = async () => {
       const errorMessage = document.createElement("p");
+      const registering = document.createElement("p");
       errorMessageDiv.innerHTML = "";
-      errorMessage.innerText = "Registering User...";
-      errorMessageDiv.append(errorMessage);
+      registering.innerText = "Registering User...";
+      registeringDiv.append(registering);
       try {
         const response = await axios.post("/api/sessions/register", data);
         renderLogin();
       } catch (err) {
+        registeringDiv.innerHTML = "";
         errorMessageDiv.innerHTML = "";
         errorMessage.innerText = "Passwords do not match";
         errorMessageDiv.append(errorMessage);
