@@ -27,6 +27,7 @@ socket.on("itsYourTurn", function (data) {
   const whoseTurn = document.getElementById("whoseturn");
   whoseTurn.innerText = " ";
   whoseTurn.innerText = "IT'S YOUR \n TURN!";
+  inputField.focus();
 });
 
 // Client listens to event from server called "waitForOtherPlayers"
