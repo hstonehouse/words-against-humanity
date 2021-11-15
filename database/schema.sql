@@ -1,7 +1,4 @@
 createdb words-against-humanity
--- changed DB to the above as that is what I set on heroku. 
--- If we need to change it back, 
--- I'll drop the current DB on Heroku and re-add.
 
 CREATE TABLE users (
   user_id SERIAL PRIMARY KEY,
@@ -24,15 +21,6 @@ CREATE TABLE phrases (
     phrase_id SERIAL PRIMARY KEY,
     content TEXT
 );
-
--- CREATE TABLE game_state (
---     id SERIAL PRIMARY KEY,
---     status BOOL
--- );
-
--- Test user and room
-INSERT INTO users (username, password) VALUES ('Test', 'test'); -- update password later with bcrypt
-INSERT INTO rooms (user_id, words) VALUES (1, 'A potato walked into a bar... ');
 
 -- Phrases/Story Starters to enter into database
 INSERT INTO phrases (content) VALUES ('Once upon a time... ');
@@ -66,7 +54,6 @@ INSERT INTO phrases (content) VALUES ('Apparently I got a little carried away wh
 INSERT INTO phrases (content) VALUES ('It is the morning after the night before and I found myself... ');
 INSERT INTO phrases (content) VALUES ('I took a deep breath as I... ');
 INSERT INTO phrases (content) VALUES ('Do you want to build a... ');
-
 
 INSERT INTO stories (content) VALUES ('I took a deep breath as I stumbled up the steps to the gym. I didn''t feel hung over which meant I was still drunk. I knew I was late. The rest of the team had already arrived and were getting ready for the morning workout, stretching and telling stories about the night before. I kept the hood of my sweatshirt up trying to go as long as I could without showing my face. “What happened to you?” the team caption asked. Someone pulled the hood off my head revealing two black eyes and a huge scratch on my right cheek. “Where does that scratch lead?” someone asked, pointing to a scratch that started at the base of my neck and disappeared under my sweatshirt. My cheeks flushed a fiery red. I pulled off my shirt and threw it to the floor. “Do you remember the guy from the bar last night? Well things were going really good… Then the handcuffs came out, and he left the room to get us both some water, when suddenly, his cat decided to go all Claw and Order on me! It was a cat-astrophe”');
 INSERT INTO stories (content) VALUES ('Do you wanna build a snowman? C''mon, let''s go and play. I never see you anymore. Come out the door. It''s like you''ve gone away! We used to be best buddies and now we''re not. I wish you would tell me why! Do you wanna build a snowman? It doesn''t have to be a snowman. Go away, Anna! Okay, bye. Do you wanna build a snowman? Or ride our bikes around the halls? I think some company is overdue. I''ve started talking to the pictures on the walls. Hang in there, Joan! It gets a little lonely, all these empty rooms. Just watching the hours tick by. Elsa? Please, I know you''re in there, people are asking where you''ve been! They say, "Have courage", and I''m trying to. I''m right out here for you, just let me in! We only have each other, it''s just you and me. What are we gonna do? Do you wanna build a snowman?');

@@ -80,7 +80,6 @@ io.on("connection", (socket) => {
           const randPhraseIndex = Math.floor(Math.random() * phraseObj.length);
           const randPhrase = phraseObj[randPhraseIndex];
           rooms.initialGame(randPhrase.content);
-          console.log("Random phrase:" + randPhrase.content);
           // Server sends event called "gameContent" back to client
           socket.emit("gameContent", randPhrase.content);
           // If you're the only one in the game, you have to wait for other players
