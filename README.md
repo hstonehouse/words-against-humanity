@@ -17,7 +17,7 @@ This project is written in vanilla JS and deployed to [Heroku](https://devcenter
 ### Play Words Against Humanity [here](https://words-against-humanity.herokuapp.com/).
 
 ### Technologies used:
-This is a Single Page Application (SPA) developed in Node JS, using the following dependencies:
+This is a [Single Page Application (SPA)](https://developer.mozilla.org/en-US/docs/Glossary/SPA) developed in Node JS, using the following dependencies:
 
 - [Express JS](https://expressjs.com/)
 - [Bycrypt](https://www.npmjs.com/package/bcryptjs)
@@ -30,7 +30,7 @@ This is a Single Page Application (SPA) developed in Node JS, using the followin
 
 ### Understanding the Repo
 
-This [Single Page App](https://developer.mozilla.org/en-US/docs/Glossary/SPA) (SPA) was developed using a standard Node JS, Models, Views and Controllers (MVC) folder structure. More info on Express JS MVC Structures can be found [HERE](https://www.section.io/engineering-education/node-mvc-architecture/)
+This SPA was developed using a Models, Views and Controllers (MVC) folder structure. More info on Express JS MVC Structures can be found [HERE](https://www.section.io/engineering-education/node-mvc-architecture/)
 
 When using Express JS MVC structure, remember to `require` each dependency on your main server.js file. You must also `module.exports` your 'models' and 'controllers' and then `require` these files on your server.js in order to utilise them.
 
