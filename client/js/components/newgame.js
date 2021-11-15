@@ -131,10 +131,6 @@ function renderNewGame() {
     // Disable input field when user has submitted word
     const inputField = document.getElementById("next-word");
     inputField.setAttribute("disabled", true);
-
-    const whoseTurn = document.getElementById("whoseturn");
-    whoseTurn.innerText = " ";
-    whoseTurn.innerText = "NOT YOUR \n TURN.";
   });
 
   // End game functionality
