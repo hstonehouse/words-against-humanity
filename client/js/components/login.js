@@ -23,7 +23,6 @@ function renderLogin() {
         <div class="flex-center">
             <button class="default-text buttons register" id="register">Register</button>
         </div>
-
     `;
 
     // Register button
@@ -41,7 +40,6 @@ function renderLogin() {
     event.preventDefault(); // intercepting the submission of form and instead, doing the below JavaScript
     const formData = new FormData(form); // grabs all the data from the form
     const data = Object.fromEntries(formData.entries()); // grab all the entries in the form and turns it into an object
-
 
     const errorMessageDiv = document.getElementById("error-message");
     const loggingInDiv = document.querySelector(".green-text");
@@ -62,9 +60,6 @@ function renderLogin() {
         errorMessageDiv.append(errorMessage);
       }
     };
-
     attemptLogin();
-
-
   });
 }

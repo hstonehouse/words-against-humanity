@@ -21,7 +21,6 @@ function renderRegister() {
                 </form>
             </section>
         </div
-
     `;
   const form = document.querySelector("form");
 
