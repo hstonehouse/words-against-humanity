@@ -30,7 +30,7 @@ This is a Single Page Application (SPA) developed in Node JS, using the followin
 
 ### Understanding the Repo
 
-This [Single Page App](https://developer.mozilla.org/en-US/docs/Glossary/SPA)" (SPA) was developed using a standard Node JS, Models, Views and Controllers (MVC) folder structure. More info on Express JS MVC Structures can be found [HERE](https://www.section.io/engineering-education/node-mvc-architecture/)
+This [Single Page App](https://developer.mozilla.org/en-US/docs/Glossary/SPA) (SPA) was developed using a standard Node JS, Models, Views and Controllers (MVC) folder structure. More info on Express JS MVC Structures can be found [HERE](https://www.section.io/engineering-education/node-mvc-architecture/)
 
 When using Express JS MVC structure, remember to `require` each dependency on your main server.js file. You must also `module.exports` your 'models' and 'controllers' and then `require` these files on your server.js in order to utilise them.
 
@@ -52,9 +52,12 @@ Check your Heroku app for added database
 
 ### Future Enhancements:
 
-[NLP 'Bad Words'](https://www.npmjs.com/package/bad-words)
+- [NLP 'Bad Words'](https://www.npmjs.com/package/bad-words)
     `npm install bad-words --save`
-    A javascript filter for badwords and profanities.
+     (A JavaScript filter for badwords and profanities)
+- Multiple game rooms
+- Add time limit for submitting word
+- No spaces or special characters (except for punctuation) on input
 
 ### Words Against Humanity was created by:
 - [Helen S](https://github.com/hstonehouse)
